@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>AITUConnect — CyberSecurity Mid Term Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#f4f7fb;--card:#ffffff;--border:#d8e1ec;--glow:#1f6feb;--glow2:#4f8cff;--accent:#d9486b;--text:#1f2937;--muted:#5f6f82;--success:#1f9d55;--warn:#b7791f;--nav-h:68px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;overflow-x:hidden;font-size:17px;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(79,140,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(79,140,255,.045) 1px,transparent 1px);background-size:42px 42px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0));pointer-events:none;z-index:0}
+header{position:relative;z-index:100;padding:22px 34px 18px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(79,140,255,.10) 0%,rgba(255,255,255,.92) 100%);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.logo-block{display:flex;flex-direction:column;gap:3px}
+.logo-title{font-family:'Orbitron',monospace;font-size:clamp(15px,4vw,25px);font-weight:900;letter-spacing:2px;color:var(--glow);text-shadow:0 0 16px var(--glow),0 0 45px rgba(0,255,224,.22);animation:glitch 9s ease-in-out infinite}
+@keyframes glitch{0%,100%{text-shadow:0 0 16px var(--glow),0 0 45px rgba(0,255,224,.22)}18%{text-shadow:-2px 0 var(--accent),2px 0 var(--glow2)}36%{text-shadow:2px 0 var(--glow),0 0 45px rgba(0,255,224,.22)}}
+.logo-sub{font-family:'Share Tech Mono',monospace;font-size:clamp(10px,2vw,12px);color:var(--muted);letter-spacing:1.8px;text-transform:uppercase}
+.header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.year-badge{font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--accent);color:var(--accent);border-radius:2px;letter-spacing:2px;background:rgba(255,60,110,.08)}
+.study-badge{font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid var(--glow);color:var(--glow);border-radius:2px;letter-spacing:2px;animation:pulse-badge 3s ease-in-out infinite}
+@keyframes pulse-badge{0%,100%{box-shadow:0 0 4px rgba(0,255,224,.3)}50%{box-shadow:0 0 12px rgba(0,255,224,.65)}}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 7px var(--success);animation:blink 1.4s step-end infinite;flex-shrink:0}
+@keyframes blink{50%{opacity:0}}
+.ticker-wrap{position:relative;z-index:10;background:rgba(79,140,255,.06);border-bottom:1px solid var(--border);overflow:hidden;height:34px;display:flex;align-items:center}
+.ticker{display:flex;gap:48px;white-space:nowrap;animation:ticker-scroll 26s linear infinite;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px}
+.ticker span{color:var(--glow)}
+@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.layout{position:relative;z-index:10;display:flex}
+.sidebar{width:250px;flex-shrink:0;border-right:1px solid var(--border);padding:22px 0;position:sticky;top:0;height:calc(100vh - 88px);overflow-y:auto;background:rgba(255,255,255,.88);backdrop-filter:blur(10px)}
+.sidebar-section-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:3px;padding:0 14px 7px}
+.nav-btn{display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;padding:13px 18px;cursor:pointer;text-align:left;transition:background .15s,border-color .15s;border-left:3px solid transparent}
+.nav-btn:hover{background:rgba(0,255,224,.04)}
+.nav-btn.active{background:rgba(0,255,224,.07);border-left-color:var(--glow)}
+.nav-icon{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+.nav-info{display:flex;flex-direction:column;gap:1px}
+.nav-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:var(--text);line-height:1.25}
+.nav-code{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px}
+.nav-btn.active .nav-name{color:var(--glow)}
+.sidebar-divider{height:1px;background:var(--border);margin:10px 14px}
+.content-area{flex:1;padding:34px 36px 72px;min-width:0}
+.content-panel{display:none;animation:fadeIn .25s ease}
+.content-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-hdr{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:2.5px;margin:26px 0 14px;display:flex;align-items:center;gap:10px}
+.sec-hdr::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.panel-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.panel-title{font-family:'Orbitron',monospace;font-size:clamp(22px,3.8vw,30px);font-weight:700;color:var(--glow);text-shadow:none;letter-spacing:1px}
+.panel-subtitle{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1.6px;margin-top:7px}
+.panel-tag{font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 9px;border:1px solid var(--accent);color:var(--accent);border-radius:2px;letter-spacing:1px;white-space:nowrap;align-self:flex-start;margin-top:4px}
+.panel-tag-ok{border-color:var(--success)!important;color:var(--success)!important}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:26px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 18px;box-shadow:0 10px 28px rgba(31,41,55,.05)}
+.stat-val{font-family:'Orbitron',monospace;font-size:26px;font-weight:700;color:var(--glow);display:block}
+.stat-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-top:3px;display:block}
+.coming-soon{border:1px dashed var(--border);border-radius:6px;padding:48px 20px;text-align:center;position:relative;overflow:hidden}
+.coming-soon::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,255,224,.04) 0%,transparent 70%)}
+.cs-icon{font-size:42px;display:block;margin-bottom:14px;filter:drop-shadow(0 0 9px var(--glow))}
+.cs-title{font-family:'Orbitron',monospace;font-size:15px;color:var(--glow);letter-spacing:2px;margin-bottom:10px}
+.cs-text{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--muted);line-height:1.8;max-width:440px;margin:0 auto}
+.welcome-block{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:34px 30px;margin-bottom:28px;position:relative;overflow:hidden;box-shadow:0 16px 38px rgba(31,41,55,.06)}
+.welcome-block::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 50%,rgba(0,255,224,.055) 0%,transparent 55%),radial-gradient(ellipse at 85% 20%,rgba(0,180,255,.035) 0%,transparent 50%)}
+.welcome-title{font-family:'Orbitron',monospace;font-size:clamp(18px,4.5vw,32px);font-weight:900;line-height:1.2;color:var(--text);margin-bottom:10px;position:relative}
+.welcome-title em{font-style:normal;color:var(--glow);text-shadow:0 0 16px rgba(0,255,224,.45)}
+.welcome-desc{font-size:18px;color:var(--muted);max-width:720px;line-height:1.7;position:relative}
+.welcome-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;position:relative}
+.w-badge{font-family:'Share Tech Mono',monospace;font-size:10px;padding:4px 11px;border-radius:2px;letter-spacing:2px}
+.w-badge-accent{border:1px solid rgba(255,60,110,.4);color:var(--accent);background:rgba(255,60,110,.07)}
+.w-badge-glow{border:1px solid rgba(0,180,255,.4);color:var(--glow2);background:rgba(0,180,255,.06)}
+.w-badge-success{border:1px solid rgba(57,255,133,.4);color:var(--success);background:rgba(57,255,133,.06)}
+.ov-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.ov-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .2s,transform .15s;box-shadow:0 8px 24px rgba(31,41,55,.04)}
+.ov-card:hover{border-color:var(--glow2);transform:translateY(-2px)}
+.ov-icon{font-size:22px;flex-shrink:0}
+.ov-name{font-weight:700;font-size:16px;color:var(--text);display:block}
+.ov-hint{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;margin-top:4px;display:block}
+/* MODULE */
+.mod-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.mod-tab{font-family:'Share Tech Mono',monospace;font-size:12px;padding:10px 16px;border:1px solid var(--border);background:none;color:var(--muted);border-radius:8px;cursor:pointer;letter-spacing:1px;transition:all .15s;white-space:nowrap}
+.mod-tab:hover{border-color:var(--glow2);color:var(--glow2)}
+.mod-tab.active{border-color:var(--glow);color:var(--glow);background:rgba(0,255,224,.07)}
+.mod-section{display:none}
+.mod-section.active{display:block}
+/* CARDS */
+.tb{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 24px;margin-bottom:16px;box-shadow:0 10px 28px rgba(31,41,55,.05)}
+.tb.def{border-left:3px solid var(--glow2)}
+.tb.thm{border-left:3px solid var(--warn)}
+.tb.note{border-left:3px solid var(--success)}
+.tb.ex{border-left:3px solid var(--accent)}
+.tb.alg{border-left:3px solid var(--glow)}
+.ttag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:2px 7px;border-radius:2px;display:inline-block;margin-bottom:7px}
+.t-def{background:rgba(0,180,255,.12);color:var(--glow2);border:1px solid rgba(0,180,255,.25)}
+.t-thm{background:rgba(255,204,0,.08);color:var(--warn);border:1px solid rgba(255,204,0,.25)}
+.t-note{background:rgba(57,255,133,.08);color:var(--success);border:1px solid rgba(57,255,133,.2)}
+.t-ex{background:rgba(255,60,110,.08);color:var(--accent);border:1px solid rgba(255,60,110,.25)}
+.t-alg{background:rgba(0,255,224,.06);color:var(--glow);border:1px solid rgba(0,255,224,.2)}
+.ttitle{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:22px;color:var(--text);margin-bottom:10px}
+.tbody{font-size:17px;color:#425466;line-height:1.85}
+.tbody strong{color:var(--text)}
+.mbox{font-family:'Share Tech Mono',monospace;font-size:13px;color:#2457a6;background:#f8fbff;border:1px solid #d7e6fb;border-radius:12px;padding:16px 18px;margin:12px 0;white-space:pre;overflow-x:auto;line-height:1.9}
+.sboxes{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.sbox{flex:1;min-width:150px;padding:14px 14px;border-radius:12px;font-family:'Share Tech Mono',monospace;font-size:12px;line-height:1.8;text-align:center}
+.s-red{background:rgba(255,60,110,.07);border:1px solid rgba(255,60,110,.25);color:#ff8faa}
+.s-grn{background:rgba(57,255,133,.06);border:1px solid rgba(57,255,133,.2);color:#7fffc4}
+.s-blu{background:rgba(0,180,255,.06);border:1px solid rgba(0,180,255,.2);color:#80d8ff}
+/* week nav inside panel */
+.week-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.week-tab{font-family:'Share Tech Mono',monospace;font-size:12px;padding:10px 14px;border:1px solid var(--border);background:none;color:var(--muted);border-radius:10px;cursor:pointer;letter-spacing:.8px;transition:all .15s}
+.week-tab:hover{border-color:var(--glow2);color:var(--glow2)}
+.week-tab.active{border-color:var(--warn);color:var(--warn);background:rgba(255,204,0,.06)}
+.week-section{display:none}
+.week-section.active{display:block}
+/* MOBILE */
+.mobile-nav{display:none;position:fixed;left:10px;right:10px;bottom:10px;height:calc(var(--nav-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:rgba(255,255,255,.94);border:1px solid rgba(216,225,236,.95);border-radius:22px;backdrop-filter:blur(14px);box-shadow:0 14px 34px rgba(31,41,55,.14),0 2px 10px rgba(31,111,235,.08);z-index:220;overflow:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.mobile-nav::-webkit-scrollbar{display:none}
+.mobile-nav-inner{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));align-items:stretch;height:100%;width:100%;min-width:0;padding:6px}
+.mob-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 4px;background:transparent;border:none;cursor:pointer;border-radius:16px;transition:background .18s,transform .18s,color .18s;flex-shrink:0;min-width:0;color:var(--muted)}
+.mob-btn:hover{background:rgba(31,111,235,.06)}
+.mob-btn.active{background:linear-gradient(180deg,rgba(31,111,235,.13),rgba(31,111,235,.05));color:var(--glow);box-shadow:inset 0 0 0 1px rgba(31,111,235,.12)}
+.mob-icon{font-size:17px;line-height:1;display:block}
+.mob-label{font-family:'Share Tech Mono',monospace;font-size:8px;color:currentColor;letter-spacing:.45px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.mob-btn.active .mob-label{color:var(--glow)}
+footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:18px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;background:rgba(255,255,255,.8)}
+.ftxt{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px}
+.fglow{color:var(--glow)}
+@media(max-width:768px){
+  :root{--nav-h:62px}
+  body{font-size:16px}
+  .sidebar{display:none}
+  .mobile-nav{display:block}
+  .mobile-nav-inner{grid-template-columns:repeat(7,minmax(0,1fr));padding:6px}
+  .mob-btn{padding:7px 3px;min-width:0}
+  .mob-icon{font-size:15px}
+  .mob-label{font-size:7px;letter-spacing:.28px}
+  header{position:sticky;top:0;padding:10px 12px 9px;align-items:flex-start;gap:8px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px)}
+  .study-badge,.status-dot,.ticker-wrap{display:none}
+  .logo-title{font-size:17px;letter-spacing:1px}
+  .logo-sub{font-size:8px;letter-spacing:.9px;line-height:1.4}
+  .header-right{width:100%;justify-content:flex-start;gap:8px}
+  .year-badge{font-size:9px;padding:4px 9px}
+  .content-area{padding:14px 12px calc(var(--nav-h) + env(safe-area-inset-bottom) + 34px)}
+  .welcome-block{padding:20px 16px;border-radius:16px;margin-bottom:18px}
+  .welcome-title{font-size:26px}
+  .welcome-desc{font-size:15px;line-height:1.55}
+  .welcome-badges{gap:6px}
+  .w-badge{font-size:9px;padding:4px 8px;letter-spacing:1px}
+  .panel-top{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:16px;padding-bottom:12px}
+  .panel-title{font-size:20px;line-height:1.15}
+  .panel-subtitle{font-size:9px;line-height:1.5;letter-spacing:1.1px}
+  .panel-tag{font-size:9px;padding:4px 8px}
+  .sec-hdr{font-size:10px;letter-spacing:1.8px;margin:20px 0 12px;line-height:1.45}
+  .stats-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:18px}
+  .stat-card{padding:12px;border-radius:12px}
+  .stat-val{font-size:18px}
+  .stat-lbl{font-size:8px;letter-spacing:1.6px}
+  .ov-grid{grid-template-columns:1fr;gap:10px}
+  .ov-card{padding:14px 13px;border-radius:12px}
+  .ov-name{font-size:15px}
+  .ov-hint{font-size:9px}
+  .tb{padding:14px 14px;border-radius:14px;margin-bottom:12px}
+  .ttag{font-size:8px;letter-spacing:1.5px}
+  .ttitle{font-size:18px;line-height:1.25;margin-bottom:8px}
+  .tbody{font-size:15px;line-height:1.65}
+  .mbox{font-size:11px;padding:11px 12px;white-space:pre-wrap;word-break:break-word;overflow-x:auto;line-height:1.7}
+  .sboxes{gap:6px}
+  .sbox{min-width:100%;padding:12px;font-size:11px;line-height:1.6}
+  .week-tabs{gap:6px;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;margin-bottom:14px;scrollbar-width:none}
+  .week-tabs::-webkit-scrollbar{display:none}
+  .week-tab{font-size:10px;padding:8px 10px;flex:0 0 auto;border-radius:9px}
+  footer{padding:9px 12px}
+}
+@media(max-width:420px){
+  .content-area{padding-left:10px;padding-right:10px}
+  .stats-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .panel-title{font-size:18px}
+  .week-tab{font-size:9px;padding:7px 9px}
+  .mob-btn{padding:0 2px}
+  .mob-label{font-size:6.5px}
+}
+
+@media(max-width:430px){
+  :root{--nav-h:66px}
+  body{padding-bottom:0}
+  .mobile-nav{left:8px;right:8px;bottom:8px;border-radius:20px}
+  .panel-title{font-size:18px}
+  .welcome-title{font-size:23px}
+  .stats-row{gap:7px}
+  .stat-card{padding:11px}
+  .ov-card{padding:13px 12px}
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <div class="logo-title">AITUConnect</div>
+    <div class="logo-sub">◈ CyberSecurity · 3rd Trimester · Mid Term Prep</div>
+  </div>
+  <div class="header-right">
+    <div class="status-dot"></div>
+    <div class="year-badge">1ST YEAR</div>
+    <div class="study-badge">STUDY MODE</div>
+  </div>
+</header>
+
+<div class="ticker-wrap"><div class="ticker">
+  <span>▶</span> LINEAR ALGEBRA &nbsp;·&nbsp; HACKING LAB &nbsp;·&nbsp; ELECTRONICS &nbsp;·&nbsp; CULTURAL STUDIES &nbsp;·&nbsp; POLITICAL SCIENCE &nbsp;·&nbsp; CALCULUS 2 &nbsp;&nbsp;&nbsp;&nbsp;
+  <span>▶</span> LINEAR ALGEBRA &nbsp;·&nbsp; HACKING LAB &nbsp;·&nbsp; ELECTRONICS &nbsp;·&nbsp; CULTURAL STUDIES &nbsp;·&nbsp; POLITICAL SCIENCE &nbsp;·&nbsp; CALCULUS 2 &nbsp;&nbsp;&nbsp;&nbsp;
+</div></div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section-label">// OVERVIEW</div>
+    <button class="nav-btn active" id="btn-home" onclick="show('home')">
+      <span class="nav-icon">⌂</span>
+      <div class="nav-info"><span class="nav-name">Dashboard</span><span class="nav-code">OVERVIEW</span></div>
+    </button>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section-label">// SUBJECTS · Y1</div>
+    <button class="nav-btn" id="btn-linalg" onclick="show('linalg')">
+      <span class="nav-icon">𝛁</span>
+      <div class="nav-info"><span class="nav-name">Linear Algebra</span><span class="nav-code"></span></div>
+    </button>
+    <button class="nav-btn" id="btn-hacking" onclick="show('hacking')">
+      <span class="nav-icon">⚡</span>
+      <div class="nav-info"><span class="nav-name">Hacking Lab</span><span class="nav-code"></span></div>
+    </button>
+    <button class="nav-btn" id="btn-electronics" onclick="show('electronics')">
+      <span class="nav-icon">⬡</span>
+      <div class="nav-info"><span class="nav-name">Electronics</span><span class="nav-code"></span></div>
+    </button>
+    <button class="nav-btn" id="btn-cultural" onclick="show('cultural')">
+      <span class="nav-icon">◈</span>
+      <div class="nav-info"><span class="nav-name">Cultural Studies</span><span class="nav-code"></span></div>
+    </button>
+    <button class="nav-btn" id="btn-polsci" onclick="show('polsci')">
+      <span class="nav-icon">◉</span>
+      <div class="nav-info"><span class="nav-name">Political Science</span><span class="nav-code"></span></div>
+    </button>
+    <button class="nav-btn" id="btn-calculus" onclick="show('calculus')">
+      <span class="nav-icon">∫</span>
+      <div class="nav-info"><span class="nav-name">Calculus 2</span><span class="nav-code"></span></div>
+    </button>
+  </aside>
+
+  <div class="content-area">
+
+    <!-- HOME -->
+    <div class="content-panel active" id="panel-home">
+      <div class="welcome-block">
+        <div class="welcome-title">Ready to <em>Ace</em><br>Your Mid Terms?</div>
+        <div class="welcome-desc">Выбери предмет и изучи материал. Только нужное — определения, теоремы, алгоритмы для быстрой подготовки.</div>
+        <div class="welcome-badges">
+          <span class="w-badge w-badge-accent">1ST YEAR STUDENT</span>
+          <span class="w-badge w-badge-glow">3RD TRIMESTER · 2025</span>
+          <span class="w-badge w-badge-success">6 SUBJECTS</span>
+        </div>
+      </div>
+      <div class="sec-hdr">// SUBJECT MODULES</div>
+      <div class="ov-grid">
+        <div class="ov-card" onclick="show('linalg')">
+          <div class="ov-icon">𝛁</div>
+          <div><span class="ov-name">Linear Algebra</span><span class="ov-hint" style="color:var(--success)">4 WEEKS LOADED</span></div>
+        </div>
+        <div class="ov-card" onclick="show('hacking')"><div class="ov-icon">⚡</div><div><span class="ov-name">Hacking Lab</span><span class="ov-hint" style="color:var(--success)">3 LECTURES LOADED</span></div></div>
+        <div class="ov-card" onclick="show('electronics')"><div class="ov-icon">⬡</div><div><span class="ov-name">Electronics</span><span class="ov-hint" style="color:var(--success)">2 LESSONS LOADED</span></div></div>
+        <div class="ov-card" onclick="show('cultural')"><div class="ov-icon">◈</div><div><span class="ov-name">Cultural Studies</span><span class="ov-hint" style="color:var(--success)">4 WEEKS LOADED</span></div></div>
+        <div class="ov-card" onclick="show('polsci')"><div class="ov-icon">◉</div><div><span class="ov-name">Political Science</span><span class="ov-hint" style="color:var(--success)">3 WEEKS LOADED</span></div></div>
+        <div class="ov-card" onclick="show('calculus')"><div class="ov-icon">∫</div><div><span class="ov-name">Calculus 2</span><span class="ov-hint" style="color:var(--success)">4 LECTURES LOADED</span></div></div>
+      </div>
+    </div>
+
+    <!-- LINEAR ALGEBRA -->
+    <div class="content-panel" id="panel-linalg">
+      <div class="panel-top">
+        <div>
+          <div class="panel-title">Linear Algebra</div>
+          <div class="panel-subtitle">MATH-201 · 1ST YEAR · WEEKS 1–4 · CH. 1 &amp; 2</div>
+        </div>
+        <div class="panel-tag panel-tag-ok">4 WEEKS</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-val">4</span><span class="stat-lbl">WEEKS</span></div>
+        <div class="stat-card"><span class="stat-val">14</span><span class="stat-lbl">TOPICS</span></div>
+        <div class="stat-card"><span class="stat-val">1</span><span class="stat-lbl">BIG THM</span></div>
+        <div class="stat-card"><span class="stat-val">IMT</span><span class="stat-lbl">KEY RESULT</span></div>
+      </div>
+
+      <!-- WEEK TABS -->
+      <div class="week-tabs">
+        <button class="week-tab active" onclick="switchWeek('la-w1',this)">📅 Week 1</button>
+        <button class="week-tab" onclick="switchWeek('la-w2',this)">📅 Week 2</button>
+        <button class="week-tab" onclick="switchWeek('la-w3',this)">📅 Week 3</button>
+        <button class="week-tab" onclick="switchWeek('la-w4',this)">📅 Week 4</button>
+        <button class="week-tab" onclick="switchWeek('la-cs',this)">⚡ Cheat Sheet</button>
+      </div>
+
+      <div class="week-section active" id="la-w1">
+        <div class="sec-hdr">// WEEK 1 — CH.1: LINEAR EQUATIONS (§1.1–1.4)</div>
+        
+<div class="sec-hdr">// 1.1–1.4  CORE CONCEPTS</div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Linear System & Solution</div>
+<div class="tbody">System of <strong>m equations</strong> in <strong>n unknowns</strong> x₁…xₙ. A <strong>solution</strong> is a list (s₁…sₙ) satisfying all equations. The collection of all solutions = <strong>solution set</strong>.</div>
+<div class="mbox">a₁₁x₁ + a₁₂x₂ + … + a₁ₙxₙ = b₁
+ ⋮
+aₘ₁x₁ + aₘ₂x₂ + … + aₘₙxₙ = bₘ   →  matrix form: Ax = b</div></div>
+
+<div class="tb note"><span class="ttag t-note">KEY FACT</span>
+<div class="ttitle">Consistent vs Inconsistent</div>
+<div class="sboxes">
+<div class="sbox s-red">INCONSISTENT<br>⟺ NO SOLUTION<br>Row gives 0 = c, c≠0</div>
+<div class="sbox s-grn">CONSISTENT<br>⟺ ≥1 SOLUTION<br>Either 1 or ∞ many</div></div></div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Row Echelon Form (REF) & RREF</div>
+<div class="tbody"><strong>REF:</strong> leading entry = 1, each pivot right of previous, zero rows at bottom.<br>
+<strong>RREF:</strong> REF + pivot is the ONLY nonzero in its column.</div>
+<div class="mbox">REF:  [1  2  3]    RREF: [1  0  3]
+      [0  1  4]          [0  1  4]
+      [0  0  1]          [0  0  1]</div></div>
+
+<div class="tb alg"><span class="ttag t-alg">ALGORITHM</span>
+<div class="ttitle">Row Reduction Steps</div>
+<div class="tbody">1. Find leftmost nonzero column → pivot column<br>
+2. Swap to get nonzero at top, scale to make pivot = 1<br>
+3. Zero out all entries <strong>below</strong> pivot (EROs)<br>
+4. Repeat for submatrix → gives <strong>REF</strong><br>
+5. Zero out entries <strong>above</strong> each pivot → gives <strong>RREF</strong></div>
+<div class="mbox">EROs:  Rᵢ ↔ Rⱼ  |  c·Rᵢ→Rᵢ (c≠0)  |  Rᵢ+c·Rⱼ→Rᵢ</div></div>
+
+<div class="tb thm"><span class="ttag t-thm">THEOREM</span>
+<div class="ttitle">3 Cases (Existence & Uniqueness)</div>
+<div class="mbox">d = n − rank(A)   (free parameters)
+
+Case 1: inconsistent row (0…0|c), c≠0  →  NO SOLUTION
+Case 2: d = 0, rank=n                  →  UNIQUE SOLUTION
+Case 3: d ≥ 1, rank&lt;n                 →  ∞ MANY SOLUTIONS</div></div>
+
+      </div>
+      <div class="week-section" id="la-w2">
+        <div class="sec-hdr">// WEEK 2 — CH.1: SOLUTION SETS, INDEPENDENCE (§1.5–1.7)</div>
+        
+<div class="sec-hdr">// 1.5  SOLUTION SETS OF LINEAR SYSTEMS</div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Homogeneous System</div>
+<div class="tbody">A system <strong>Ax = 0</strong> (all constants = 0) is called <strong>homogeneous</strong>. It is ALWAYS consistent — trivial solution <strong>x = 0</strong> always exists.</div>
+<div class="mbox">Ax = 0  →  trivial solution: x = (0, 0, …, 0)  always works
+Nontrivial solutions exist  ⟺  system has FREE VARIABLES  ⟺  rank(A) &lt; n</div></div>
+
+<div class="tb note"><span class="ttag t-note">KEY FACT</span>
+<div class="ttitle">Parametric Vector Form</div>
+<div class="tbody">When free variables exist, write solution as a <strong>parametric vector form</strong>: x = p + t·v (or multiple params). Here <strong>p</strong> is a particular solution and <strong>v</strong> spans the solution set.</div>
+<div class="mbox">Example — solution set of Ax=0:
+x = t·v₁ + s·v₂    (t, s ∈ ℝ) — passes through origin
+
+Solution set of Ax=b (nonhomogeneous, consistent):
+x = p + t·v₁ + s·v₂  — translated parallel to homogeneous solution set</div></div>
+
+<div class="tb thm"><span class="ttag t-thm">THEOREM 1.6</span>
+<div class="ttitle">Nonhomogeneous Solution Structure</div>
+<div class="tbody">If <strong>p</strong> is any particular solution to Ax = b, then every solution has the form:</div>
+<div class="mbox">x = p + xₕ
+where xₕ is any solution to the homogeneous system Ax = 0</div>
+<div class="tbody">Geometric picture: solution set of Ax=b is a translate of solution set of Ax=0.</div></div>
+
+<div class="sec-hdr">// 1.6  APPLICATIONS OF LINEAR SYSTEMS</div>
+
+<div class="tb ex"><span class="ttag t-ex">APPLICATION</span>
+<div class="ttitle">Network Flow & Balancing</div>
+<div class="tbody">Set up equations for each node: <strong>flow in = flow out</strong>. Write as linear system, row-reduce. Free variables = adjustable flows.</div></div>
+
+<div class="tb ex"><span class="ttag t-ex">APPLICATION</span>
+<div class="ttitle">Balancing Chemical Equations</div>
+<div class="tbody">Assign unknown coefficients to each molecule. For each element, write: <strong>atoms in = atoms out</strong>. Solve the linear system for the coefficients.</div></div>
+
+<div class="sec-hdr">// 1.7  LINEAR INDEPENDENCE</div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Linear Independence / Dependence</div>
+<div class="tbody">Vectors {v₁, v₂, …, vₚ} are <strong>linearly independent</strong> if the only solution to c₁v₁ + c₂v₂ + … + cₚvₚ = 0 is c₁=c₂=…=cₚ=0 (trivial).<br>
+They are <strong>linearly dependent</strong> if a nontrivial solution exists (some cᵢ ≠ 0).</div>
+<div class="mbox">Test: put vectors as columns → [v₁ v₂ … vₚ]x = 0
+Row reduce. If only trivial solution → INDEPENDENT
+If free variable exists   → DEPENDENT</div></div>
+
+<div class="tb thm"><span class="ttag t-thm">KEY THEOREMS</span>
+<div class="ttitle">Linear Dependence Facts</div>
+<div class="mbox">1. A set with the ZERO VECTOR is always dependent.
+
+2. A set of 2 vectors is dependent  ⟺  one is a scalar multiple of the other.
+
+3. If p &gt; n (more vectors than entries):  ALWAYS dependent.
+   (More columns than rows → free variable guaranteed)
+
+4. {v₁,…,vₚ} dependent  ⟺  at least one vector is a linear
+   combination of the others (the preceding ones).</div></div>
+
+      </div>
+      <div class="week-section" id="la-w3">
+        <div class="sec-hdr">// WEEK 3 — CH.1&amp;2: TRANSFORMATIONS, MATRIX OPS (§1.8–2.1)</div>
+        
+<div class="sec-hdr">// 1.8  LINEAR TRANSFORMATIONS</div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Linear Transformation</div>
+<div class="tbody">A transformation T: ℝⁿ → ℝᵐ is <strong>linear</strong> if for all u, v ∈ ℝⁿ and scalars c:<br>
+1. T(u + v) = T(u) + T(v)  &nbsp;&nbsp;(additivity)<br>
+2. T(cu) = cT(u)  &nbsp;&nbsp;(homogeneity)</div>
+<div class="mbox">Consequence:  T(0) = 0   always
+              T(cu + dv) = cT(u) + dT(v)   (superposition)</div></div>
+
+<div class="tb note"><span class="ttag t-note">KEY IDEA</span>
+<div class="ttitle">Matrix Multiplication = Linear Transformation</div>
+<div class="tbody">Every matrix multiplication T(x) = Ax defines a linear transformation. The matrix A <strong>IS</strong> the transformation — it tells you where each basis vector goes.</div>
+<div class="mbox">T: ℝⁿ → ℝᵐ  defined by T(x) = Ax  where A is m×n
+Domain = ℝⁿ,  Codomain = ℝᵐ
+Range = set of all Ax = column space of A</div></div>
+
+<div class="sec-hdr">// 1.9  MATRIX OF A LINEAR TRANSFORMATION</div>
+
+<div class="tb thm"><span class="ttag t-thm">THEOREM 1.10</span>
+<div class="ttitle">Standard Matrix of T</div>
+<div class="tbody">For any linear T: ℝⁿ → ℝᵐ, there exists a <strong>unique</strong> matrix A such that T(x) = Ax. This matrix is:</div>
+<div class="mbox">A = [T(e₁)  T(e₂)  …  T(eₙ)]
+
+where e₁, e₂, …, eₙ are standard basis vectors of ℝⁿ.
+Just apply T to each basis vector → that's the column!</div></div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Onto and One-to-One</div>
+<div class="sboxes">
+<div class="sbox s-grn"><strong>ONE-TO-ONE</strong><br>T(u)=T(v) ⟹ u=v<br>⟺ Ax=0 has<br>only trivial sol.<br>⟺ columns of A<br>linearly independent</div>
+<div class="sbox s-blu"><strong>ONTO</strong><br>Every b in ℝᵐ<br>is hit by some x<br>⟺ A has a pivot<br>in every ROW<br>⟺ cols span ℝᵐ</div></div></div>
+
+<div class="sec-hdr">// 2.1  MATRIX OPERATIONS</div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Matrix Operations</div>
+<div class="mbox">Addition:       A + B  (same size, add entry-by-entry)
+Scalar mult:    cA     (multiply every entry by c)
+Multiplication: (AB)ᵢⱼ = row i of A · col j of B
+                A is m×n, B is n×p  →  AB is m×p
+Transpose:      (Aᵀ)ᵢⱼ = Aⱼᵢ  (flip rows/cols)</div></div>
+
+<div class="tb thm"><span class="ttag t-thm">IMPORTANT PROPERTIES</span>
+<div class="ttitle">Matrix Algebra Rules</div>
+<div class="mbox">  A(BC) = (AB)C          (associative)
+  A(B+C) = AB + AC       (distributive)
+  (A+B)C = AC + BC
+  (AB)ᵀ = BᵀAᵀ           (reverse order!)
+  (ABC)ᵀ = CᵀBᵀAᵀ
+
+✗  AB ≠ BA  in general    (NOT commutative!)
+✗  AB = AC  does NOT imply  B = C
+✗  AB = 0   does NOT imply  A=0 or B=0</div></div>
+
+<div class="tb note"><span class="ttag t-note">REMEMBER</span>
+<div class="ttitle">Column View of AB</div>
+<div class="tbody">Each column of AB = A times the corresponding column of B.</div>
+<div class="mbox">AB = A[b₁  b₂  …  bₚ] = [Ab₁  Ab₂  …  Abₚ]</div></div>
+
+      </div>
+      <div class="week-section" id="la-w4">
+        <div class="sec-hdr">// WEEK 4 — CH.2: INVERSE, IMT, LU (§2.2–2.5)</div>
+        
+<div class="sec-hdr">// 2.2  INVERSE OF A MATRIX</div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Invertible (Nonsingular) Matrix</div>
+<div class="tbody">An n×n matrix A is <strong>invertible</strong> if there exists an n×n matrix C such that AC = CA = I. Then C = A⁻¹ (unique). A non-invertible matrix is called <strong>singular</strong>.</div>
+<div class="mbox">If A invertible:  Ax = b  has unique solution  x = A⁻¹b
+(A⁻¹)⁻¹ = A
+(AB)⁻¹ = B⁻¹A⁻¹   ← REVERSE ORDER
+(Aᵀ)⁻¹ = (A⁻¹)ᵀ</div></div>
+
+<div class="tb alg"><span class="ttag t-alg">ALGORITHM</span>
+<div class="ttitle">Computing A⁻¹ by Row Reduction</div>
+<div class="tbody">Augment A with identity, row reduce to RREF. If A reduces to I, the right side becomes A⁻¹.</div>
+<div class="mbox">[ A | I ]  →  row reduce  →  [ I | A⁻¹ ]
+
+If left side CANNOT reduce to I  →  A is SINGULAR (no inverse)</div></div>
+
+<div class="tb ex"><span class="ttag t-ex">FORMULA</span>
+<div class="ttitle">2×2 Inverse Formula</div>
+<div class="mbox">A = [a  b]     A⁻¹ = ___1___ · [ d  -b]
+    [c  d]             ad - bc   [-c   a]
+
+det(A) = ad - bc
+If det(A) = 0  →  A is SINGULAR (not invertible)</div></div>
+
+<div class="sec-hdr">// 2.3  INVERTIBLE MATRIX THEOREM (IMT)</div>
+
+<div class="tb thm"><span class="ttag t-thm">THEOREM 2.8 — THE BIG ONE</span>
+<div class="ttitle">Invertible Matrix Theorem (IMT)</div>
+<div class="tbody">For an n×n matrix A, ALL of the following are equivalent:</div>
+<div class="mbox">a)  A is invertible
+b)  A is row equivalent to Iₙ
+c)  A has n pivot positions
+d)  Ax = 0 has only the trivial solution
+e)  Columns of A are linearly independent
+f)  T(x)=Ax is one-to-one
+g)  Ax = b has a solution for every b in ℝⁿ
+h)  Columns of A span ℝⁿ
+i)  T(x)=Ax is onto
+j)  There exists C such that CA = I
+k)  There exists D such that AD = I
+l)  Aᵀ is invertible</div>
+<div class="tbody">⚡ If ANY ONE is true → ALL are true. If ANY ONE is false → ALL are false.</div></div>
+
+<div class="sec-hdr">// 2.4  PARTITIONED MATRICES</div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">Block Matrix Multiplication</div>
+<div class="tbody">Matrices can be divided into <strong>blocks</strong> (submatrices). Multiplication works block-by-block, same rules as regular multiplication — as long as block sizes are compatible.</div>
+<div class="mbox">[ A₁₁  A₁₂ ] [ B₁ ]   [ A₁₁B₁ + A₁₂B₂ ]
+[ A₂₁  A₂₂ ] [ B₂ ] = [ A₂₁B₁ + A₂₂B₂ ]</div></div>
+
+<div class="sec-hdr">// 2.5  MATRIX FACTORIZATIONS — LU DECOMPOSITION</div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITION</span>
+<div class="ttitle">LU Factorization</div>
+<div class="tbody">An m×n matrix A (with no row swaps needed) can be written as A = LU where:<br>
+<strong>L</strong> = m×m lower triangular matrix with 1s on diagonal<br>
+<strong>U</strong> = m×n upper triangular (REF of A)</div>
+<div class="mbox">A = LU
+
+To solve Ax = b using LU:
+Step 1: Solve Ly = b  (forward substitution)  → find y
+Step 2: Solve Ux = y  (back substitution)     → find x
+
+WHY useful: Factor A once, solve for many different b vectors cheaply!</div></div>
+
+<div class="tb alg"><span class="ttag t-alg">ALGORITHM</span>
+<div class="ttitle">Finding L and U</div>
+<div class="mbox">1. Row reduce A to U (REF) using only row replacements
+   (Rᵢ + c·Rⱼ → Rᵢ, NO swaps, NO scaling)
+
+2. L = identity with multipliers placed below diagonal:
+   If you used "Rᵢ − c·Rⱼ → Rᵢ" to eliminate,
+   then place c in position (i,j) of L.
+
+Check: multiply L × U = A </div></div>
+
+<div class="tb note"><span class="ttag t-note">SUMMARY</span>
+<div class="ttitle">Chapter 2 Big Picture</div>
+<div class="mbox">Square matrix A (n×n):
+
+Invertible?  YES  →  unique solution, det≠0, full rank, cols independent
+             NO   →  singular, det=0, free variables, cols dependent
+
+LU = efficient way to solve Ax=b for many b
+IMT = one theorem connecting ALL invertibility concepts</div></div>
+
+      </div>
+      <div class="week-section" id="la-cs">
+        
+<div class="sec-hdr">// MASTER CHEAT SHEET — ALL 4 WEEKS</div>
+
+<div class="tb alg"><span class="ttag t-alg">FORMULAS</span>
+<div class="ttitle">Must-Know Formulas</div>
+<div class="mbox">d = n − rank(A)            # free parameters
+det(2×2) = ad − bc         # for invertibility
+(AB)⁻¹ = B⁻¹A⁻¹           # reverse order!
+(AB)ᵀ = BᵀAᵀ              # reverse order!
+A = LU                     # LU factorization
+x = p + xₕ                 # nonhomog solution = particular + homog</div></div>
+
+<div class="tb note"><span class="ttag t-note">QUICK CHECKS</span>
+<div class="ttitle">How to Classify a System / Matrix</div>
+<div class="mbox">→ Row reduce [A|b] to RREF
+
+Has row (0…0 | c), c≠0?     → INCONSISTENT (no solution)
+rank(A) = n, no inconsist.? → UNIQUE solution
+rank(A) &lt; n, consistent?    → INFINITELY MANY (d free params)
+
+Square matrix n×n:
+rank = n?  → INVERTIBLE, det≠0, cols independent, spans ℝⁿ
+rank &lt; n?  → SINGULAR, det=0, cols dependent, doesn't span ℝⁿ</div></div>
+
+<div class="tb def"><span class="ttag t-def">DEFINITIONS RECAP</span>
+<div class="ttitle">Key Terms Fast Reference</div>
+<div class="mbox">Homogeneous system    Ax = 0  (always consistent, trivial sol = 0)
+Particular solution   any ONE solution p to Ax = b
+Linear independence   c₁v₁+…+cₚvₚ=0 only if all cᵢ=0
+Standard matrix of T  A = [T(e₁) T(e₂) … T(eₙ)]
+One-to-one T          Ax=0 trivial only ↔ cols independent
+Onto T                cols of A span codomain ↔ pivot every row
+Invertible matrix     AC = CA = I  ↔  ALL conditions in IMT true
+LU factorization      A = LU, L lower triangular, U upper (REF)</div></div>
+
+<div class="tb thm"><span class="ttag t-thm">IMT SHORTLIST</span>
+<div class="ttitle">Invertible Matrix Theorem — Remember These</div>
+<div class="mbox">n×n matrix A is INVERTIBLE  ⟺  each of:
+  • n pivot positions (full rank)
+  • Ax=0 only trivial solution
+  • Columns linearly independent
+  • Columns span ℝⁿ
+  • T(x)=Ax is one-to-one AND onto
+  • det(A) ≠ 0
+  • Aᵀ is invertible</div></div>
+
+<div class="tb ex"><span class="ttag t-ex">GOTCHAS</span>
+<div class="ttitle">Common Mistakes to Avoid</div>
+<div class="mbox">✗  AB ≠ BA   (matrix mult is NOT commutative)
+✗  AB=0 does NOT mean A=0 or B=0
+✗  AB=AC does NOT mean B=C (unless A invertible)
+✗  (AB)⁻¹ ≠ A⁻¹B⁻¹  →  correct: B⁻¹A⁻¹
+✗  More vectors than dimensions → ALWAYS linearly dependent
+  Zero vector in set → ALWAYS linearly dependent
+  A set of 1 nonzero vector → ALWAYS linearly independent</div></div>
+
+      </div>
+    </div>
+
+    
+    <div class="content-panel" id="panel-hacking">
+      <div class="panel-top">
+        <div>
+          <div class="panel-title">Hacking Lab</div>
+          <div class="panel-subtitle">SEC-310 · 1ST YEAR · LECTURES 1, 2, 4</div>
+        </div>
+        <div class="panel-tag panel-tag-ok">3 LECTURES</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-val">3</span><span class="stat-lbl">LECTURES</span></div>
+        <div class="stat-card"><span class="stat-val">6</span><span class="stat-lbl">PENTEST STAGES</span></div>
+        <div class="stat-card"><span class="stat-val">4</span><span class="stat-lbl">OSINT TOOLS</span></div>
+        <div class="stat-card"><span class="stat-val">WPA2</span><span class="stat-lbl">FOCUS TOPIC</span></div>
+      </div>
+
+      <div class="week-tabs">
+        <button class="week-tab active" onclick="switchWeek('hl-hl1',this)">⚡ Lec 1 — Intro</button>
+        <button class="week-tab" onclick="switchWeek('hl-hl2',this)">🔍 Lec 2 — OSINT</button>
+        <button class="week-tab" onclick="switchWeek('hl-hl4',this)">📡 Lec 4 — Wi-Fi</button>
+        <button class="week-tab" onclick="switchWeek('hl-hlcs',this)">⚡ Cheat Sheet</button>
+      </div>
+
+      <!-- LEC 1 -->
+      <div class="week-section active" id="hl-hl1">
+        <div class="sec-hdr">// LECTURE 1 — INTRO TO HACKING LAB · KALI LINUX · PENTEST STAGES</div>
+
+        <div class="tb def"><span class="ttag t-def">TERMINOLOGY</span>
+        <div class="ttitle">Basic Security Terms</div>
+        <div class="mbox">White Hat   — ethical hacker, secures systems with permission
+Black Hat   — malicious hacker, harmful intent
+Gray Hat    — no permission, but not necessarily malicious
+Vulnerability — weakness in a system
+Exploit     — method to take advantage of a vulnerability
+Penetration Test — authorized simulated attack to find weaknesses</div></div>
+
+        <div class="tb note"><span class="ttag t-note">KEY CONCEPT</span>
+        <div class="ttitle">Offensive vs Defensive Security</div>
+        <div class="sboxes">
+          <div class="sbox s-red"><strong>OFFENSIVE</strong><br>Penetration Testing<br>Red Teaming<br>Ethical Hacking<br><small>Simulate attacks → find holes</small></div>
+          <div class="sbox s-grn"><strong>DEFENSIVE</strong><br>Blue Teaming<br>Incident Response<br>Threat Hunting<br><small>Monitor → detect → respond</small></div>
+        </div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">6 STAGES</span>
+        <div class="ttitle">Penetration Testing Methodology</div>
+        <div class="mbox">1. RECONNAISSANCE  — collect info (OSINT, WHOIS, Google dorking)
+2. SCANNING        — find open ports, services, vulns (Nmap, Nessus)
+3. GAINING ACCESS  — exploit vulns (Metasploit, Hydra, phishing)
+4. MAINTAINING ACCESS — persist (backdoors, privilege escalation)
+5. COVERING TRACKS — hide activity (clear logs, disable monitoring)
+6. REPORTING       — document findings + mitigation suggestions</div>
+        <div class="tbody">Always <strong>authorized</strong> — without permission it's illegal.</div></div>
+
+        <div class="tb def"><span class="ttag t-def">TOOL</span>
+        <div class="ttitle">Kali Linux</div>
+        <div class="tbody">Debian-based OS by Offensive Security. Pre-installed with <strong>600+ security tools</strong>. Standard platform for pen testing.</div>
+        <div class="mbox">Tool categories: Info Gathering · Vulnerability Analysis · Wireless Attacks
+                         Web Applications · Exploitation · Password Attacks
+                         Forensics · Sniffing &amp; Spoofing · Reporting
+
+Key shortcuts:
+  Ctrl+Alt+T      open terminal
+  Ctrl+Shift+T    new terminal tab
+  Ctrl+C          interrupt command
+  Ctrl+R          search command history
+  history         show past commands
+  ls > file.txt   save directory list to file</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">RECON STAGE DETAIL</span>
+        <div class="ttitle">Reconnaissance Techniques</div>
+        <div class="mbox">Passive (no direct contact):    WHOIS, Google Dorking, social media, job postings
+Active  (direct contact):       Nmap scans, banner grabbing, DNS queries
+
+Example: Testing a bank
+  → LinkedIn reveals they use Apache + AWS
+  → WHOIS shows domain registration details
+  → Google dork finds exposed config files</div></div>
+      </div>
+
+      <!-- LEC 2 -->
+      <div class="week-section" id="hl-hl2">
+        <div class="sec-hdr">// LECTURE 2 — INFORMATION GATHERING · OSINT TOOLS</div>
+
+        <div class="tb note"><span class="ttag t-note">CONCEPT</span>
+        <div class="ttitle">Active vs Passive Reconnaissance</div>
+        <div class="mbox">| Feature          | Passive                  | Active                    |
+|------------------|--------------------------|---------------------------|
+| Target contact   | None (no direct probes)  | Direct interaction        |
+| Detectability    | Hard to detect           | Easier to detect          |
+| Data sources     | Third-party databases    | Direct target queries     |
+| Examples         | Google Dorking, WHOIS    | Nmap, Shodan queries      |</div></div>
+
+        <div class="tb def"><span class="ttag t-def">CONCEPT</span>
+        <div class="ttitle">OSINT — Open Source Intelligence</div>
+        <div class="tbody">Collecting and analyzing <strong>publicly available</strong> information. Legal but must be used ethically. Data sources: search engines, social media, public databases, dark web forums.</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">TOOL</span>
+        <div class="ttitle">Shodan — "The Hacker's Search Engine"</div>
+        <div class="tbody">Scans the internet for connected devices. Unlike Google it indexes <strong>devices and services</strong> — open ports, software versions, vulnerabilities.</div>
+        <div class="mbox">Basic searches:
+  webcam          → find accessible cameras
+  apache          → Apache web servers
+  port:22         → SSH services
+  country:KZ      → limit to Kazakhstan
+  org:"Company"   → specific organization
+
+Example: apache country:KZ port:80
+
+Finds: webcams, routers, IoT, SCADA, databases, servers</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">TOOL</span>
+        <div class="ttitle">Google Dorking — Advanced Search Operators</div>
+        <div class="mbox">filetype:pdf          → specific file type
+inurl:login           → "login" in URL
+intext:"password"     → word in page content
+intitle:"index of"    → directory listings (exposed!)
+site:example.com      → search within one site
+link:example.com      → pages linking to site
+
+Practical combos:
+  filetype:pdf intext:"confidential"
+  site:example.com inurl:admin
+  filetype:txt intext:"email"
+  inurl:"view/view.shtml"    → exposed cameras</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">TOOL</span>
+        <div class="ttitle">theHarvester — Email &amp; Subdomain Collector</div>
+        <div class="tbody">Gathers emails, subdomains, IP addresses, usernames from search engines and public APIs.</div>
+        <div class="mbox">Command syntax:
+  theHarvester -d example.com -b google
+
+  -d  target domain
+  -b  data source (google, bing, linkedin…)
+
+Collects: email addresses · subdomains · hostnames · IPs</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">TOOL</span>
+        <div class="ttitle">WHOIS &amp; Maltego</div>
+        <div class="mbox">WHOIS (who.is):
+  → Domain owner name, email, company
+  → Registration + expiration dates
+  → Hosting provider + IP addresses
+
+Maltego:
+  → Visual graph: maps relationships between people,
+    domains, IPs, companies
+  → Uses "Transforms" to auto-query multiple sources
+  → Start from 1 data point (email) → expand to full network map</div></div>
+      </div>
+
+      <!-- LEC 4 -->
+      <div class="week-section" id="hl-hl4">
+        <div class="sec-hdr">// LECTURE 4 — WI-FI SECURITY · WPA2 CRACKING · AIRCRACK-NG</div>
+
+        <div class="tb def"><span class="ttag t-def">THEORY</span>
+        <div class="ttitle">Wi-Fi Standards (IEEE 802.11)</div>
+        <div class="mbox">802.11n  (Wi-Fi 4) — up to 600 Mbps,  2.4/5 GHz
+802.11ac (Wi-Fi 5) — up to 6.77 Gbps, 5 GHz
+802.11ax (Wi-Fi 6) — up to 10.7 Gbps, 2.4/5/6 GHz
+802.11be (Wi-Fi 7) — up to 30 Gbps,   2.4/5/6 GHz (2024)
+
+Frames:  Packet = Layer 3 (routing),  Frame = Layer 2 (local delivery)
+Frame types: Management | Control | Data</div></div>
+
+        <div class="tb note"><span class="ttag t-note">SECURITY PROTOCOLS</span>
+        <div class="ttitle">OPN / WEP / WPA2 / WPA3 Comparison</div>
+        <div class="mbox">OPN   — No encryption. Data in plain text. INSECURE.
+
+WEP   — RC4 cipher. Reused IVs. BROKEN.
+        Crackable in minutes with aircrack-ng.
+
+WPA2  — AES/CCMP encryption. Still dominant.
+        Attack: capture 4-way handshake → dictionary/brute-force
+        Security depends entirely on PASSWORD STRENGTH.
+
+WPA3  — SAE (Dragonfly handshake) replaces PSK.
+        Forward secrecy. Offline dictionary attacks blocked.
+        Most secure current standard.</div>
+        <div class="sboxes">
+          <div class="sbox s-red">WEP — BROKEN<br>Never use</div>
+          <div class="sbox s-blu">WPA2 — Vulnerable<br>to weak passwords</div>
+          <div class="sbox s-grn">WPA3 — Current<br>Best standard</div>
+        </div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">KEY CONCEPT</span>
+        <div class="ttitle">The 4-Way Handshake (WPA2 Attack Target)</div>
+        <div class="tbody">4 messages exchanged between AP and client to derive encryption keys. This handshake is what attackers capture to attempt offline password cracking.</div>
+        <div class="mbox">Message 1: AP sends ANonce (random value) to client
+Message 2: Client generates SNonce, derives PTK, sends back
+Message 3: AP confirms keys, sends GTK (group key)
+Message 4: Client confirms → secure channel established
+
+Key hierarchy:
+  PMK (Pairwise Master Key) — from password
+  PTK (Pairwise Transient Key) — encrypts unicast traffic
+  GTK (Group Temporal Key) — encrypts broadcast/multicast
+
+Attack: capture handshake → run dictionary attack against PMK</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">TOOLSET</span>
+        <div class="ttitle">Aircrack-ng Suite — Commands</div>
+        <div class="mbox">airmon-ng start wlan0        → enable monitor mode → creates wlan0mon
+airmon-ng check kill         → stop interfering processes
+airmon-ng stop wlan0mon      → disable monitor mode
+
+airodump-ng wlan0mon         → scan all nearby networks
+airodump-ng -c 6 --bssid AA:BB:CC:DD:EE:FF -w capture wlan0mon
+                             → capture traffic on specific AP
+
+aireplay-ng -0 5 -a AA:BB:CC:DD:EE:FF wlan0mon
+                             → send 5 deauth packets (force handshake)
+
+aircrack-ng capture.cap -w wordlist.txt
+                             → crack WPA2 with dictionary attack
+
+Key airodump-ng output fields:
+  BSSID   — MAC of access point
+  PWR     — signal strength (more negative = weaker)
+  ENC     — encryption type (OPN/WEP/WPA2/WPA3)
+  CIPHER  — CCMP (AES) or TKIP
+  AUTH    — PSK (personal) or MGT (enterprise)
+  ESSID   — network name (SSID)</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">WPA2 CRACK WORKFLOW</span>
+        <div class="ttitle">Step-by-Step Attack Flow</div>
+        <div class="mbox">1. airmon-ng start wlan0          → monitor mode
+2. airodump-ng wlan0mon           → find target network
+3. airodump-ng -c [CH] --bssid [BSSID] -w cap wlan0mon
+                                  → capture traffic
+4. aireplay-ng -0 10 -a [BSSID] wlan0mon
+                                  → deauth client → force handshake
+5. Wait for "WPA handshake" message in airodump-ng
+6. aircrack-ng cap.cap -w /usr/share/wordlists/rockyou.txt
+                                  → dictionary attack
+7. If password found → KEY FOUND!</div></div>
+      </div>
+
+      <!-- CHEAT SHEET -->
+      <div class="week-section" id="hl-hlcs">
+        <div class="sec-hdr">// CHEAT SHEET — HACKING LAB ALL LECTURES</div>
+
+        <div class="tb alg"><span class="ttag t-alg">QUICK REFERENCE</span>
+        <div class="ttitle">Pentest Stages — 1 Line Each</div>
+        <div class="mbox">1. Recon       → gather info (OSINT, WHOIS, Google dork)
+2. Scanning    → Nmap ports, Nessus vulns, banner grabbing
+3. Access      → Metasploit exploit / Hydra brute-force / phishing
+4. Persistence → backdoor, privilege escalation, rootkit
+5. Cover tracks→ clear logs (rm -rf /var/log/auth.log), disable IDS
+6. Report      → executive summary + vuln list + risk + mitigation</div></div>
+
+        <div class="tb note"><span class="ttag t-note">TOOLS SUMMARY</span>
+        <div class="ttitle">Key Tools Fast Reference</div>
+        <div class="mbox">Shodan       → search internet-connected devices/services
+theHarvester → theHarvester -d domain.com -b google
+WHOIS        → domain owner, dates, hosting info (who.is)
+Maltego      → visual relationship graph (entity mapping)
+Nmap         → network/port scanner
+Airmon-ng    → enable monitor mode on WiFi adapter
+Airodump-ng  → capture WiFi packets, discover networks
+Aireplay-ng  → inject packets (deauth attack)
+Aircrack-ng  → crack WEP/WPA2 keys from captured handshake
+Metasploit   → exploit framework
+Hydra        → password brute-force tool
+Wireshark    → deep packet inspection / traffic analysis</div></div>
+
+        <div class="tb def"><span class="ttag t-def">WIFI SECURITY</span>
+        <div class="ttitle">Encryption Hierarchy to Remember</div>
+        <div class="mbox">WEP  → BROKEN (RC4, reused IVs, crack in minutes)
+WPA  → Transitional (TKIP, better than WEP, still weak)
+WPA2 → Standard (AES/CCMP, attack via handshake capture)
+WPA3 → Best (SAE/Dragonfly, forward secrecy, blocks offline attacks)
+
+WPA2 attack requires:
+  Monitor-mode capable WiFi adapter
+  Capture 4-way handshake
+  Dictionary/wordlist (rockyou.txt)
+  → Success depends on PASSWORD STRENGTH</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">GOOGLE DORK CHEATSHEET</span>
+        <div class="ttitle">Most Useful Operators</div>
+        <div class="mbox">filetype:pdf intext:"confidential"    → confidential PDFs
+site:target.com inurl:admin           → admin panels
+filetype:txt intext:"email"           → email lists
+inurl:"view/view.shtml"               → exposed cameras
+"webcamXP" country:US                 → webcams in US (Shodan)
+port:3389 country:KZ                  → exposed RDP in KZ (Shodan)
+intitle:"index of" "parent directory" → open directories</div></div>
+      </div>
+
+    </div>
+    
+    <div class="content-panel" id="panel-electronics">
+      <div class="panel-top">
+        <div>
+          <div class="panel-title">Electronics</div>
+          <div class="panel-subtitle">ENG-220 · 1ST YEAR · LESSONS 1 &amp; 2</div>
+        </div>
+        <div class="panel-tag panel-tag-ok">2 LESSONS</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-val">2</span><span class="stat-lbl">LESSONS</span></div>
+        <div class="stat-card"><span class="stat-val">7</span><span class="stat-lbl">COMPONENTS</span></div>
+        <div class="stat-card"><span class="stat-val">3</span><span class="stat-lbl">CORE LAWS</span></div>
+        <div class="stat-card"><span class="stat-val">AC/DC</span><span class="stat-lbl">KEY TOPIC</span></div>
+      </div>
+
+      <div class="week-tabs">
+        <button class="week-tab active" onclick="switchWeek('el-l1',this)">🔌 Lesson 1 — Components</button>
+        <button class="week-tab" onclick="switchWeek('el-l2',this)">⚡ Lesson 2 — V, I, R, KCL/KVL</button>
+        <button class="week-tab" onclick="switchWeek('el-cs',this)">📋 Cheat Sheet</button>
+      </div>
+
+      <div class="week-section active" id="el-l1">
+        <div class="sec-hdr">// LESSON 1 — RESISTOR · CAPACITOR · INDUCTOR · DIODE · TRANSISTOR · IC</div>
+
+        <div class="tb def"><span class="ttag t-def">OVERVIEW</span>
+        <div class="ttitle">Electronics — Basic Components</div>
+        <div class="tbody">Science of controlling electric energy using <strong>active</strong> components (transistors, diodes, ICs) and <strong>passive</strong> components (resistors, capacitors, inductors). Core 7: Resistor, Capacitor, Inductor, Diode, LED, Transistor, IC.</div></div>
+
+        <div class="tb def"><span class="ttag t-def">COMPONENT 1</span>
+        <div class="ttitle">Resistor</div>
+        <div class="tbody">Passive 2-terminal component. Implements <strong>electrical resistance</strong>. Unit: <strong>Ohm (Ω)</strong>. Named after Georg Simon Ohm.</div>
+        <div class="mbox">Ohm's Law:  V = I × R
+
+Series:    Rₜ = R₁ + R₂ + … (current same I₁=I₂, voltages split)
+Parallel:  1/Rₜ = 1/R₁ + 1/R₂ + … (voltage same V₁=V₂, currents split)
+
+Units:  1 kΩ = 10³ Ω  |  1 MΩ = 10⁶ Ω
+
+Power: P = V²/R = I²R = V·I
+
+FIXED types:
+  Carbon Composite — cheap, high tolerance, good at high freq
+  Film Resistor    — tolerance ≤1%, up to 10 MΩ
+  Wire Wound       — 0.01–100 kΩ, high precision
+
+VARIABLE types:
+  Rheostat         — adjusts current (2-terminal)
+  Potentiometer    — 3-terminal voltage divider (volume knob, joystick)
+  Thermistor       — resistance changes with TEMPERATURE
+  Varistor (VDR)   — conducts more at HIGH VOLTAGE (surge protection)
+  Photoresistor(LDR)— resistance decreases with LIGHT (street lights)</div></div>
+
+        <div class="tb def"><span class="ttag t-def">COMPONENT 2</span>
+        <div class="ttitle">Capacitor</div>
+        <div class="tbody">Passive device: <strong>two plates + insulator (dielectric)</strong> between them. Stores energy as <strong>electric field</strong>. Unit: <strong>Farad (F)</strong>.</div>
+        <div class="mbox">Series:   1/Cₜ = 1/C₁ + 1/C₂  → total C DECREASES (opposite to R!)
+Parallel: Cₜ = C₁ + C₂       → total C INCREASES
+
+Charging:   plates accumulate charge, voltage rises toward supply
+Discharging: stored energy released back to circuit</div></div>
+
+        <div class="tb def"><span class="ttag t-def">COMPONENT 3</span>
+        <div class="ttitle">Inductor</div>
+        <div class="tbody">Passive component: wire coil. Stores energy as <strong>magnetic field</strong>. Inductance ∝ number of turns in coil. Unit: <strong>Henry (H)</strong>.</div>
+        <div class="mbox">Core types (determines frequency range):
+  Air Core       — no core, Radio Frequencies (RF), minimal signal loss
+  Ferromagnetic  — iron/ferrite, higher inductance, high-freq losses
+  Toroidal       — ring-shaped, minimum EM interference, AC circuits
+  Laminated Iron — thin steel sheets, blocks eddy currents, LOW freq / transformers
+  Powdered Iron  — distributed air gaps, high energy storage, low eddy loss
+
+Magnetic rule: LIKE poles REPEL, UNLIKE poles ATTRACT</div></div>
+
+        <div class="tb def"><span class="ttag t-def">COMPONENT 4</span>
+        <div class="ttitle">Diode</div>
+        <div class="tbody">2-terminal semiconductor. Conducts current in <strong>ONE direction only</strong>. Terminals: <strong>Anode (+)</strong> and <strong>Cathode (−)</strong>. The bar in the symbol marks the cathode.</div>
+        <div class="mbox">Forward bias  → current flows (anode+ to cathode−)
+Reverse bias  → current blocked (open circuit)
+
+Uses: circuit protection (wrong polarity), rectification (AC→DC)</div></div>
+
+        <div class="tb def"><span class="ttag t-def">COMPONENT 5</span>
+        <div class="ttitle">LED — Light Emitting Diode</div>
+        <div class="tbody">Diode that <strong>emits light</strong> when forward biased. Electrons recombine with holes → release <strong>photons</strong>. Color determined by semiconductor's band gap energy.</div></div>
+
+        <div class="tb def"><span class="ttag t-def">COMPONENT 6</span>
+        <div class="ttitle">Transistor</div>
+        <div class="tbody">3-terminal semiconductor: <strong>amplify or switch</strong> signals. Terminals: <strong>Base</strong> (activates), <strong>Collector</strong> (+ output), <strong>Emitter</strong> (− reference). Types: NPN and PNP.</div>
+        <div class="mbox">Small Base current → controls large Collector-Emitter current
+Modes: Cutoff (OFF) | Active (amplify) | Saturation (fully ON)</div></div>
+
+        <div class="tb def"><span class="ttag t-def">COMPONENT 7</span>
+        <div class="ttitle">Integrated Circuit (IC)</div>
+        <div class="tbody">Millions/billions of transistors on one chip. The <strong>"brain"</strong> — receives input → produces output. Modern microprocessors: billions of transistors per square inch.</div></div>
+
+        <div class="tb note"><span class="ttag t-note">KEY RULE</span>
+        <div class="ttitle">Series vs Parallel Summary</div>
+        <div class="mbox">            SERIES              PARALLEL
+Current:    I₁ = I₂ (same)      I = I₁ + I₂ (splits)
+Voltage:    V = V₁ + V₂ (splits) V₁ = V₂ (same)
+Resistance: Rₜ = R₁ + R₂        1/Rₜ = 1/R₁ + 1/R₂</div></div>
+      </div>
+
+      <div class="week-section" id="el-l2">
+        <div class="sec-hdr">// LESSON 2 — CURRENT · VOLTAGE · RESISTANCE · OHM'S LAW · AC/DC</div>
+
+        <div class="tb def"><span class="ttag t-def">FOUNDATION</span>
+        <div class="ttitle">Atomic Structure</div>
+        <div class="mbox">Atom = protons(+) + neutrons(N) + electrons(−)
+Shells:  Shell 1 = max 2e⁻ | Shell 2 = max 8e⁻ | Shell 3 = max 18e⁻
+Valence electrons = outermost shell = easiest to remove = carry current
+
+Ion: atom with gained/lost electrons
+  Lost e⁻  → positive ion (+)
+  Gained e⁻ → negative ion (−)
+
+Conductors:     ≤3 valence e⁻, low R     (Cu, Ag, Au, Al)
+Semiconductors: 4 valence e⁻, medium R  (Si, Ge)
+Insulators:     ≥5 valence e⁻, high R   (rubber, glass, plastic)
+
+Charge unit: Coulomb (C), symbol Q
+  1 Coulomb = charge of ~6.24 × 10¹⁸ electrons</div></div>
+
+        <div class="tb def"><span class="ttag t-def">CONCEPT</span>
+        <div class="ttitle">Current (I)</div>
+        <div class="tbody">Rate of electron flow past a point. <strong>Current = flow</strong>. Unit: <strong>Ampere (A)</strong>.</div>
+        <div class="mbox">I = Q / t   (charge per unit time)
+
+DC — Direct Current: flows ONE direction only
+     Sources: batteries, solar cells
+AC — Alternating Current: periodically REVERSES direction
+     Sources: generators, power grid
+     Homes: reverses every 1/120 s → 60 Hz (KZ/EU: 50 Hz)
+
+Current carriers:
+  Solids  → free electrons
+  Liquids → positive and negative ions (electrolyte)
+  Gases   → ionized atoms (e.g. neon bulb)
+  Vacuum  → electrons via thermionic emission</div></div>
+
+        <div class="tb def"><span class="ttag t-def">CONCEPT</span>
+        <div class="ttitle">Voltage (V)</div>
+        <div class="tbody">Electric <strong>pressure / potential difference</strong> that pushes current. Unit: <strong>Volt (V)</strong> = 1 Joule/Coulomb. Also called EMF (electromotive force).</div>
+        <div class="mbox">Types:
+  AC voltage — from generators (mechanical → electric)
+  DC voltage — from batteries (chemical → electric)
+
+Sources of voltage:
+  Generator    → mechanical energy → electric (most common)
+  Battery/Cell → chemical energy → electric
+  Thermocouple → heat → electric (Seebeck effect)
+  Crystal      → pressure → electric (piezoelectric)
+  Solar cell   → light → electric (photovoltaic)</div></div>
+
+        <div class="tb def"><span class="ttag t-def">CONCEPT</span>
+        <div class="ttitle">Resistance (R)</div>
+        <div class="tbody">Opposition to current flow. Unit: <strong>Ohm (Ω)</strong>. Depends on 4 factors.</div>
+        <div class="mbox">4 factors:
+  1. Material type     (copper vs rubber)
+  2. Length            (longer → MORE resistance: R ∝ L)
+  3. Cross-section area (thicker → LESS resistance: R ∝ 1/A)
+  4. Temperature       (usually hotter → more resistance)
+
+Superconductivity: R = 0 near absolute zero (−273°C)</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">CORE LAW</span>
+        <div class="ttitle">Ohm's Law + Power</div>
+        <div class="mbox">V = I × R    →  I = V/R    →  R = V/I
+
+Power:
+  P = V × I
+  P = I² × R
+  P = V² / R
+
+Units: V (volts), I (amps), R (ohms), P (watts)</div></div>
+
+        <div class="tb def"><span class="ttag t-def">CONCEPT</span>
+        <div class="ttitle">AC Waveforms &amp; Key Parameters</div>
+        <div class="mbox">Sine wave — standard AC shape (homes/factories)
+Square, Triangle, Sawtooth — other common waveforms
+
+Definitions:
+  Cycle      — one complete waveform repetition
+  Period (T) — time for one cycle (seconds)
+  Frequency  — f = 1/T   (unit: Hz = cycles/second)
+
+AC voltage values:
+  Peak (Vp)       — maximum value above zero
+  Peak-to-peak    — Vpp = 2 × Vp
+  Average         — Vav = 0.637 × Vp
+  RMS (effective) — Vrms = 0.707 × Vp  ← MOST IMPORTANT
+    → RMS = equivalent DC value for same heating effect
+    → "220V outlet" means 220V RMS
+
+Oscilloscope: instrument that displays waveform shape, measures
+              amplitude, period and frequency visually</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">KIRCHHOFF'S LAWS</span>
+        <div class="ttitle">KCL — Kirchhoff's Current Law (1st Law)</div>
+        <div class="tbody">The total current <strong>entering</strong> a junction (node) equals the total current <strong>leaving</strong> it. No charge is lost at a node.</div>
+        <div class="mbox">ΣI_in = ΣI_out
+
+Example:         I₁ →─┬─→ I₂
+                       └─→ I₃
+  I₁ = I₂ + I₃
+
+Think of it like water flow into a pipe junction:
+  what goes in MUST come out — charge cannot pile up at a node.</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">KIRCHHOFF'S LAWS</span>
+        <div class="ttitle">KVL — Kirchhoff's Voltage Law (2nd Law)</div>
+        <div class="tbody">The sum of all voltages around any closed loop in a circuit equals <strong>zero</strong>. Energy supplied = energy consumed.</div>
+        <div class="mbox">ΣV = 0   (around any closed loop)
+
+Convention: going around the loop,
+  voltage RISE  (across source)  → add   (+)
+  voltage DROP  (across resistor)→ subtract (−)
+
+Example (simple series loop with battery + 2 resistors):
+  +Vs − V_R1 − V_R2 = 0
+  Vs = V_R1 + V_R2   ← supply voltage = sum of drops
+
+Remember: Ohm's Law + KVL/KCL together solve ANY circuit!</div></div>
+
+        <div class="tb note"><span class="ttag t-note">APPLYING KCL &amp; KVL</span>
+        <div class="ttitle">How to Use Kirchhoff's Laws — Steps</div>
+        <div class="mbox">Step 1: Label all nodes (junction points) in the circuit
+Step 2: Assign current directions to each branch (guess is OK)
+        If result is negative → actual direction was opposite
+Step 3: Apply KCL at each node:  ΣI_in = ΣI_out
+Step 4: Identify all independent closed loops
+Step 5: Apply KVL around each loop:  ΣV = 0
+Step 6: Solve the system of simultaneous equations
+
+Tip: n nodes → (n−1) independent KCL equations
+     Works for both DC and AC circuits</div></div>
+      </div>
+
+      <div class="week-section" id="el-cs">
+        <div class="sec-hdr">// CHEAT SHEET — ALL ELECTRONICS FORMULAS &amp; FACTS</div>
+
+        <div class="tb alg"><span class="ttag t-alg">ALL FORMULAS</span>
+        <div class="ttitle">Must-Know Formulas</div>
+        <div class="mbox">Ohm's Law:        V = IR  |  I = V/R  |  R = V/I
+Power:            P = VI  =  I²R  =  V²/R
+Current:          I = Q/t
+Frequency:        f = 1/T
+
+KCL (node):       ΣI_in = ΣI_out         (no charge lost)
+KVL (loop):       ΣV = 0                  (voltage drops = voltage rises)
+
+Resistors Series:    Rₜ = R₁ + R₂ + R₃
+Resistors Parallel:  1/Rₜ = 1/R₁ + 1/R₂ + 1/R₃
+
+Capacitors Series:   1/Cₜ = 1/C₁ + 1/C₂   ← OPPOSITE to R!
+Capacitors Parallel: Cₜ = C₁ + C₂
+
+AC waveform:
+  f = 1/T          Vpp = 2·Vp
+  Vav = 0.637·Vp   Vrms = 0.707·Vp  (= effective/household value)</div></div>
+
+        <div class="tb note"><span class="ttag t-note">COMPONENTS</span>
+        <div class="ttitle">7 Components Quick Summary</div>
+        <div class="mbox">Resistor    → opposes current · V=IR · unit Ω
+Capacitor   → stores electric field energy · unit Farad
+Inductor    → stores magnetic field energy · unit Henry
+Diode       → one-way current (anode→cathode only)
+LED         → diode that emits light when forward biased
+Transistor  → amplify/switch · 3 terminals: Base, Collector, Emitter
+IC          → millions of transistors on chip · brain of circuit</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">COLOUR CODE</span>
+        <div class="ttitle">Resistor Colour Code</div>
+        <div class="mbox">Value = (Band1)(Band2) × Multiplier ± Tolerance
+
+Digit:  Black=0  Brown=1  Red=2  Orange=3  Yellow=4
+        Green=5  Blue=6   Violet=7  Grey=8  White=9
+Multiplier: Gold=×0.1  Silver=×0.01
+Tolerance:  Gold=±5%  Silver=±10%  Brown=±1%  Red=±2%
+
+Example: Brown-Black-Red-Gold = 10 × 100 ± 5% = 1kΩ ±5%</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">GOTCHAS</span>
+        <div class="ttitle">Common Mistakes</div>
+        <div class="mbox">✗ Capacitor series ≠ Resistor series (formulas are REVERSED)
+✗ Conventional current (+→−) ≠ electron flow (−→+)
+✗ Vrms ≠ Vpeak — household "220V" means 220V RMS
+  → Vpeak = 220/0.707 ≈ 311V
+ DC = straight line, AC = sine wave, reverses direction
+ Ohm's Law only valid for resistors (not diodes/LEDs)
+ Transistor: Base controls Collector-Emitter current
+ KCL: charge in = charge out at every node (no charge lost)
+ KVL: sum of all voltages in any closed loop = 0
+ KCL + KVL + Ohm's Law → can solve ANY circuit</div></div>
+      </div>
+
+    </div>
+
+    <div class="content-panel" id="panel-cultural">
+      <div class="panel-top">
+        <div>
+          <div class="panel-title">Cultural Studies</div>
+          <div class="panel-subtitle">HUM-140 · 1ST YEAR · WEEKS 1–4 · MIDTERM REVIEW</div>
+        </div>
+        <div class="panel-tag panel-tag-ok">4 WEEKS</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-val">4</span><span class="stat-lbl">WEEKS</span></div>
+        <div class="stat-card"><span class="stat-val">16</span><span class="stat-lbl">TOPICS</span></div>
+        <div class="stat-card"><span class="stat-val">4</span><span class="stat-lbl">QUIZ SETS</span></div>
+        <div class="stat-card"><span class="stat-val">SIGNS</span><span class="stat-lbl">KEY THEME</span></div>
+      </div>
+
+      <div class="week-tabs">
+        <button class="week-tab active" onclick="switchWeek('cs-w1',this)">📘 Week 1</button>
+        <button class="week-tab" onclick="switchWeek('cs-w2',this)">🏕 Week 2</button>
+        <button class="week-tab" onclick="switchWeek('cs-w3',this)">🔣 Week 3</button>
+        <button class="week-tab" onclick="switchWeek('cs-w4',this)">🏛 Week 4</button>
+        <button class="week-tab" onclick="switchWeek('cs-cheat',this)">⚡ Cheat Sheet</button>
+      </div>
+
+      <div class="week-section active" id="cs-w1">
+        <div class="sec-hdr">// WEEK 1 — MORPHOLOGY OF CULTURE · LANGUAGE OF CULTURE</div>
+
+        <div class="tb def"><span class="ttag t-def">BASICS</span>
+        <div class="ttitle">What Is Culture?</div>
+        <div class="tbody">Culture is the full range of learned human behavior, values, beliefs, language, and practices. It includes both ideas in people’s minds and material things created by society.</div>
+        <div class="mbox">Non-material: values, norms, language, behavior
+Material: tools, buildings, clothing, art</div></div>
+
+        <div class="tb note"><span class="ttag t-note">MODEL</span>
+        <div class="ttitle">Three Elements of Culture</div>
+        <div class="mbox">Mentifacts → ideas, beliefs, knowledge
+Sociofacts  → family, law, institutions
+Artifacts   → objects, technology, architecture</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">THEORY</span>
+        <div class="ttitle">Main Approaches</div>
+        <div class="mbox">Symbolic theory → culture is a system of meanings
+Sociobiological theory → ideas spread like memes
+Functional view → culture helps people adapt and survive</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">FAST TERMS</span>
+        <div class="ttitle">Important Concepts</div>
+        <div class="mbox">High culture      → elite cultural patterns
+Popular culture   → culture of the majority
+Mainstream culture→ values accepted by most of society
+Subculture        → culture of a specific group
+Counterculture    → group opposing dominant norms</div></div>
+      </div>
+
+      <div class="week-section" id="cs-w2">
+        <div class="sec-hdr">// WEEK 2 — NOMADIC CULTURE OF KAZAKHSTAN · PROTO-TURKIC HERITAGE</div>
+
+        <div class="tb def"><span class="ttag t-def">CORE IDEA</span>
+        <div class="ttitle">What Makes Culture Nomadic?</div>
+        <div class="tbody">Nomadic culture is based on pastoral life, mobility, and adaptation to степь, semi-desert, and mountain environments. Movement is a normal way of life, not a temporary exception.</div>
+        <div class="mbox">Main traits: herding, seasonal movement, steppe worldview</div></div>
+
+        <div class="tb note"><span class="ttag t-note">TYPES</span>
+        <div class="ttitle">Forms of Nomadism</div>
+        <div class="mbox">Nomadic       → constantly moving
+Semi-nomadic  → winter settlement + seasonal moves
+Semi-settled  → part moves, part stays
+Yaylak        → summer movement to highland pastures</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">HERITAGE</span>
+        <div class="ttitle">Proto-Turkic Spiritual World</div>
+        <div class="mbox">Tengrism → Heaven, Earth, Man
+Fire cult → purification and protection
+Aruach    → ancestor spirits
+Zher-Su   → sacred earth-water forces</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">WHY IMPORTANT</span>
+        <div class="ttitle">Contribution of Nomads</div>
+        <div class="mbox">Portable yurt, carts, felt culture, horse tradition,
+weapons technology, Silk Road exchange between East and West</div></div>
+      </div>
+
+      <div class="week-section" id="cs-w3">
+        <div class="sec-hdr">// WEEK 3 — SEMIOTICS OF CULTURE · ANATOMY OF CULTURE</div>
+
+        <div class="tb def"><span class="ttag t-def">CODES</span>
+        <div class="ttitle">Types of Cultural Codes</div>
+        <div class="mbox">Preliterate → oral tradition, myth, ritual
+Written     → books, law, logic, history
+Screen      → visual impact, mosaic perception
+Digital     → hypertext, networks, interactivity</div></div>
+
+        <div class="tb note"><span class="ttag t-note">SEMIOTICS</span>
+        <div class="ttitle">What Is a Sign?</div>
+        <div class="tbody">Semiotics studies how culture communicates through signs and symbols.</div>
+        <div class="mbox">Saussure: signifier + signified
+Peirce: icon, index, symbol</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">MYTH</span>
+        <div class="ttitle">Myth as Cultural Meaning</div>
+        <div class="mbox">Classical view → myth explains the world
+Barthes → myth turns meanings into ideology
+Functions → integrative, cognitive, compensatory</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">SPIRITUAL CULTURE</span>
+        <div class="ttitle">Morality and Early Beliefs</div>
+        <div class="mbox">Animism, totemism, fetishism, pantheism, deism, monotheism
+Morality = socially formed system of norms, values, duty</div></div>
+      </div>
+
+      <div class="week-section" id="cs-w4">
+        <div class="sec-hdr">// WEEK 4 — MEDIEVAL CENTRAL ASIA · TURKIC CULTURAL HERITAGE</div>
+
+        <div class="tb def"><span class="ttag t-def">URBAN LIFE</span>
+        <div class="ttitle">Medieval Turkic City</div>
+        <div class="mbox">Citadel    → ruler and fortress
+Shahristan → central residential zone
+Rabad      → crafts and trade outside walls</div></div>
+
+        <div class="tb note"><span class="ttag t-note">CULTURE</span>
+        <div class="ttitle">Urban Development</div>
+        <div class="mbox">Mosques, baths, bazaars, glazed ceramics,
+glassmaking, metalwork, coin minting, Silk Road trade</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">KEY FIGURES</span>
+        <div class="ttitle">Intellectual and Spiritual Giants</div>
+        <div class="mbox">Yusuf Balasagun  → Kutadgu Bilig
+Mahmud al-Kashgari → Divan lugat at-Turk
+Al-Farabi         → The Virtuous City
+Khoja Akhmet Yassavi → Divani Hikmet</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">HISTORICAL NOTE</span>
+        <div class="ttitle">Resilience and Revival</div>
+        <div class="mbox">Mongol invasion damaged many cities,
+but later trade and architecture revived under new political stability</div></div>
+      </div>
+
+      <div class="week-section" id="cs-cheat">
+        <div class="sec-hdr">// CULTURAL STUDIES — SHORT CHEAT SHEET</div>
+
+        <div class="tb alg"><span class="ttag t-alg">MUST REMEMBER</span>
+        <div class="ttitle">Fast Review</div>
+        <div class="mbox">Culture = learned behavior + values + symbols + artifacts
+Mentifacts / Sociofacts / Artifacts
+High / Popular / Mainstream / Subculture / Counterculture
+Cultural diffusion = spread of traits between cultures
+Cultural lag = parts of culture change at different speeds</div></div>
+
+        <div class="tb note"><span class="ttag t-note">NOMADIC BLOCK</span>
+        <div class="ttitle">Kazakh & Turkic Heritage</div>
+        <div class="mbox">Nomadism = mobility + herding + adaptation
+Tengrism = Heaven, Earth, Man
+Aruach = ancestor spirit
+Silk Road = exchange of goods and culture</div></div>
+
+        <div class="tb def"><span class="ttag t-def">SEMIOTICS BLOCK</span>
+        <div class="ttitle">Signs and Myth</div>
+        <div class="mbox">Saussure → signifier/signified
+Peirce → icon / index / symbol
+Myth → message carrying cultural ideology</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">MEDIEVAL BLOCK</span>
+        <div class="ttitle">Cities and Thinkers</div>
+        <div class="mbox">Citadel / Shahristan / Rabad
+Otrar, Taraz, Balasagun
+Al-Farabi, Balasagun, al-Kashgari, Yassavi</div></div>
+      </div>
+    </div>
+    
+
+    <div class="content-panel" id="panel-polsci">
+      <div class="panel-top">
+        <div>
+          <div class="panel-title">Political Science</div>
+          <div class="panel-subtitle">POL-150 · 1ST YEAR · WEEKS 1–3</div>
+        </div>
+        <div class="panel-tag panel-tag-ok">3 WEEKS</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-val">3</span><span class="stat-lbl">WEEKS</span></div>
+        <div class="stat-card"><span class="stat-val">24</span><span class="stat-lbl">KEY TERMS</span></div>
+        <div class="stat-card"><span class="stat-val">7</span><span class="stat-lbl">THINKERS</span></div>
+        <div class="stat-card"><span class="stat-val">MFT</span><span class="stat-lbl">FOCUS TOPIC</span></div>
+      </div>
+
+      <div class="week-tabs">
+        <button class="week-tab active" onclick="switchWeek('ps-w1',this)">📘 Week 1</button>
+        <button class="week-tab" onclick="switchWeek('ps-w2',this)">🏛️ Week 2</button>
+        <button class="week-tab" onclick="switchWeek('ps-w3',this)">⚖️ Week 3</button>
+        <button class="week-tab" onclick="switchWeek('ps-cs',this)">⚡ Cheat Sheet</button>
+      </div>
+
+      <div class="week-section active" id="ps-w1">
+        <div class="sec-hdr">// WEEK 1 — POLITICAL SCIENCE AS A SCIENCE</div>
+
+        <div class="tb def"><span class="ttag t-def">DEFINITION</span>
+        <div class="ttitle">What Is Politics?</div>
+        <div class="tbody">Politics is the organization and use of power in society. It includes the ideas, institutions, and processes through which communities make decisions, resolve conflicts, and shape collective life.</div>
+        <div class="mbox">Politics = power + conflict + rules + decision-making
+Question often asked: who gets what, when, and how?</div></div>
+
+        <div class="tb def"><span class="ttag t-def">DEFINITION</span>
+        <div class="ttitle">Political Science</div>
+        <div class="tbody">Political science studies how power works, how institutions function, how decisions are made, and how political ideas affect everyday life. It connects politics with society, law, economics, culture, and technology.</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">CORE MODEL</span>
+        <div class="ttitle">5 Main Functions of Political Science</div>
+        <div class="mbox">1. Descriptive  → describes political reality
+2. Explanatory → explains causes and patterns
+3. Predictive  → makes evidence-based forecasts
+4. Normative   → asks what is just / legitimate / fair
+5. Practical   → gives recommendations for policy and governance</div></div>
+
+        <div class="tb note"><span class="ttag t-note">METHODS</span>
+        <div class="ttitle">Quantitative vs Qualitative Methods</div>
+        <div class="sboxes">
+          <div class="sbox s-blu"><strong>QUANTITATIVE</strong><br>numbers, surveys, election data, statistics, experiments</div>
+          <div class="sbox s-grn"><strong>QUALITATIVE</strong><br>case studies, interviews, historical and comparative analysis</div>
+        </div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">EXAMPLES</span>
+        <div class="ttitle">Common Research Methods</div>
+        <div class="mbox">Case study   → deep analysis of one country / leader / policy
+Survey       → public opinion and political behavior
+Experiment   → tests effects of a variable on behavior
+Comparison   → contrasts systems, institutions, or outcomes</div></div>
+      </div>
+
+      <div class="week-section" id="ps-w2">
+        <div class="sec-hdr">// WEEK 2 — DEVELOPMENT OF POLITICAL THOUGHT</div>
+
+        <div class="tb def"><span class="ttag t-def">BIG IDEA</span>
+        <div class="ttitle">Political Thought Across Civilizations</div>
+        <div class="tbody">Political thought developed from ancient times to the modern era. It reflects ideas about power, justice, law, state, authority, morality, and governance in different civilizations.</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">ANCIENT CHINA</span>
+        <div class="ttitle">Three Major Traditions</div>
+        <div class="mbox">Confucianism → moral leadership, tradition, hierarchy, family values
+Legalism     → strict laws, harsh punishments, strong authority
+Daoism       → harmony with nature, minimal interference, non-action (wu wei)</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">ANCIENT INDIA</span>
+        <div class="ttitle">Pragmatic and Moral Approaches</div>
+        <div class="mbox">Arthashastra (Kautilya) → statecraft, diplomacy, economy, strategy
+Buddhism               → ethics, nonviolence, welfare, just rule
+Charvaka               → rationalism, rejection of religious dogma</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">ANCIENT GREECE</span>
+        <div class="ttitle">Key Thinkers of the Ancient West</div>
+        <div class="mbox">Socrates  → dialogue and questioning (maieutics)
+Plato     → ideal state, philosopher-king, justice in ordered classes
+Aristotle → forms of government, polity as best practical regime</div></div>
+
+        <div class="tb note"><span class="ttag t-note">MIDDLE AGES & RENAISSANCE</span>
+        <div class="ttitle">From Theology to Political Realism</div>
+        <div class="mbox">Augustine   → state is necessary because humans are sinful
+Aquinas     → politics should promote the common good and virtue
+Machiavelli → politics should be studied realistically, not morally
+Bodin       → sovereignty is the absolute and perpetual power of the state</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">KAZAKHSTAN</span>
+        <div class="ttitle">Political Thought in Kazakhstan</div>
+        <div class="mbox">Al-Farabi   → virtuous city, moral and intellectual ruler
+Valikhanov  → reform, secular education, equality before law
+Altynsarin  → literacy, education, social progress
+Abai        → truth, dignity, justice, wisdom</div></div>
+      </div>
+
+      <div class="week-section" id="ps-w3">
+        <div class="sec-hdr">// WEEK 3 — MORAL FOUNDATIONS OF POLITICS</div>
+
+        <div class="tb def"><span class="ttag t-def">BIG QUESTION</span>
+        <div class="ttitle">Morality and Politics</div>
+        <div class="tbody">Politics is not morally neutral. Some see politics mainly as power and interests, while others argue that morality is essential for justice, legitimacy, and public trust.</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">MFT</span>
+        <div class="ttitle">Moral Foundations Theory</div>
+        <div class="tbody">Political behavior is shaped not only by reason, but also by moral intuitions. Different people prioritize different moral foundations, which influences their political views.</div>
+        <div class="mbox">Core foundations often discussed:
+Care / Harm
+Fairness / Cheating
+Loyalty / Betrayal
+Authority / Subversion
+Liberty / Oppression</div></div>
+
+        <div class="tb note"><span class="ttag t-note">MORAL TRADITIONS</span>
+        <div class="ttitle">Three Traditions in Political Thought</div>
+        <div class="mbox">Utilitarianism → right action maximizes happiness
+Marxism        → class conflict, material conditions, means of production
+Social Contract→ people give up some freedom for order, security, legitimacy</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">POWER & OBEDIENCE</span>
+        <div class="ttitle">Socio-Political Experiments</div>
+        <div class="mbox">Stanford Prison Experiment (Zimbardo, 1971)
+→ structure and roles can shape abusive behavior
+
+Milgram Obedience Experiments
+→ many people obey authority even when actions seem wrong
+
+Political lesson:
+institutions must limit power
+accountability matters
+good intentions alone are not enough</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">DISCUSSION CASES</span>
+        <div class="ttitle">Modern Political Problems</div>
+        <div class="mbox">AI surveillance
+Encrypted messages and privacy
+Cybersecurity monitoring
+AI replacing jobs
+Big Tech data collection
+AI in courts
+Internet censorship
+Deepfakes in politics</div></div>
+      </div>
+
+      <div class="week-section" id="ps-cs">
+        <div class="sec-hdr">// MASTER CHEAT SHEET — POLITICAL SCIENCE WEEKS 1–3</div>
+
+        <div class="tb alg"><span class="ttag t-alg">FAST RECAP</span>
+        <div class="ttitle">Must-Know Definitions</div>
+        <div class="mbox">Politics          → organization and use of power in society
+Political science → study of power, institutions, decisions, and political ideas
+Sovereignty       → absolute and perpetual power of the state
+Social contract   → agreement creating legitimate political authority
+General will      → collective interest of the people
+Wu wei            → non-action / minimal interference in governing</div></div>
+
+        <div class="tb note"><span class="ttag t-note">5 FUNCTIONS</span>
+        <div class="ttitle">Political Science Does 5 Things</div>
+        <div class="mbox">Describe
+Explain
+Predict
+Evaluate (normative)
+Apply in practice</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">THINKERS</span>
+        <div class="ttitle">Who Said What?</div>
+        <div class="mbox">Confucianism  → moral leadership
+Kautilya      → strategy and statecraft
+Plato         → philosopher-king
+Aristotle     → polity
+Augustine     → state because of sinful nature
+Aquinas       → common good
+Machiavelli   → political realism
+Bodin         → sovereignty
+Rousseau      → social contract, general will
+Al-Farabi     → virtuous city</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">EXAM MEMORY</span>
+        <div class="ttitle">Week 3 in One Minute</div>
+        <div class="mbox">Morality matters in politics
+People react through moral intuitions
+Utilitarianism = greatest happiness
+Marxism = class and material relations
+Social contract = freedom exchanged for order
+Milgram + Stanford = power without limits leads to abuse</div></div>
+      </div>
+    </div>
+
+    <div class="content-panel" id="panel-calculus">
+      <div class="panel-top">
+        <div>
+          <div class="panel-title">Calculus 2</div>
+          <div class="panel-subtitle">MATH-202 · 1ST YEAR · LECTURES 1–4</div>
+        </div>
+        <div class="panel-tag panel-tag-ok">4 LECTURES</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-val">4</span><span class="stat-lbl">LECTURES</span></div>
+        <div class="stat-card"><span class="stat-val">18+</span><span class="stat-lbl">TOPICS</span></div>
+        <div class="stat-card"><span class="stat-val">3</span><span class="stat-lbl">KEY TESTS</span></div>
+        <div class="stat-card"><span class="stat-val">TS</span><span class="stat-lbl">CORE TOOL</span></div>
+      </div>
+
+      <div class="week-tabs">
+        <button class="week-tab active" onclick="switchWeek('calc-w1',this)">∞ Lec 1 — Series</button>
+        <button class="week-tab" onclick="switchWeek('calc-w2',this)">Σ Lec 2 — Power Series</button>
+        <button class="week-tab" onclick="switchWeek('calc-w3',this)">fx Lec 3 — Taylor</button>
+        <button class="week-tab" onclick="switchWeek('calc-w4',this)">Δ Lec 4 — DE &amp; Complex</button>
+        <button class="week-tab" onclick="switchWeek('calc-cs',this)">⚡ Cheat Sheet</button>
+      </div>
+
+      <div class="week-section active" id="calc-w1">
+        <div class="sec-hdr">// LECTURE 1 — INFINITE SERIES &amp; CONVERGENCE</div>
+
+        <div class="tb def"><span class="ttag t-def">DEFINITION</span>
+        <div class="ttitle">Infinite Series &amp; Partial Sums</div>
+        <div class="tbody">An infinite series has the form <strong>a₁ + a₂ + a₃ + ...</strong>. Its behavior is determined by the sequence of partial sums <strong>sₙ = a₁ + ... + aₙ</strong>. The series <strong>converges</strong> if the partial sums approach a finite limit; otherwise it <strong>diverges</strong>.</div>
+        <div class="mbox">∞
+Σ aₙ converges  ⇔  sₙ = Σₖ₌₁ⁿ aₖ  has a finite limit L
+n=1
+
+If sₙ → L, then   Σ aₙ = L</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">THEOREM</span>
+        <div class="ttitle">Geometric Series</div>
+        <div class="mbox">a + ar + ar² + ar³ + ...
+
+Converges if |r| &lt; 1, and
+∞
+Σ arⁿ⁻¹ = a / (1 - r)
+n=1
+
+Diverges if |r| ≥ 1</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">EXAMPLE</span>
+        <div class="ttitle">Telescoping Series</div>
+        <div class="tbody">A telescoping series simplifies because many terms cancel. For example, <strong>1 / (n(n+1)) = 1/n - 1/(n+1)</strong>, so the series collapses after expansion.</div>
+        <div class="mbox">∞
+Σ 1 / (n(n+1)) = 1
+n=1</div></div>
+
+        <div class="tb note"><span class="ttag t-note">TEST</span>
+        <div class="ttitle">n-th Term Test for Divergence</div>
+        <div class="tbody">If <strong>lim aₙ ≠ 0</strong> or the limit does not exist, then the series definitely diverges. This is a quick first check.</div>
+        <div class="mbox">If  lim aₙ ≠ 0  ⇒  Σ aₙ diverges</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">INTEGRAL TEST</span>
+        <div class="ttitle">Integral Test &amp; p-Series</div>
+        <div class="tbody">For positive, continuous, decreasing functions, the series and the improper integral behave the same. This gives the classic result for p-series.</div>
+        <div class="mbox">∞                 ∞
+Σ 1/nᵖ   behaves like  ∫ 1/xᵖ dx
+n=1               1
+
+p-series:
+Converges if p &gt; 1
+Diverges if 0 &lt; p ≤ 1</div></div>
+      </div>
+
+      <div class="week-section" id="calc-w2">
+        <div class="sec-hdr">// LECTURE 2 — POWER SERIES</div>
+
+        <div class="tb def"><span class="ttag t-def">DEFINITION</span>
+        <div class="ttitle">Power Series</div>
+        <div class="tbody">A power series centered at 0 has the form <strong>Σ cₙxⁿ</strong>. Centered at <strong>a</strong>, it becomes <strong>Σ cₙ(x-a)ⁿ</strong>. It acts like an infinite polynomial.</div>
+        <div class="mbox">∞
+Σ cₙxⁿ              or              Σ cₙ(x-a)ⁿ
+n=0                                n=0</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">KEY IDEA</span>
+        <div class="ttitle">Radius of Convergence</div>
+        <div class="tbody">Every power series has a radius of convergence <strong>R</strong>. Inside <strong>|x-a| &lt; R</strong> it converges absolutely. Outside it diverges. At endpoints, you must test separately.</div>
+        <div class="mbox">|x-a| &lt; R   → converges
+|x-a| &gt; R   → diverges
+x = a ± R    → check separately</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">EXAMPLE</span>
+        <div class="ttitle">Geometric Power Series</div>
+        <div class="mbox">∞
+Σ xⁿ = 1 + x + x² + ... = 1/(1-x),   |x| &lt; 1
+n=0</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">THEOREM</span>
+        <div class="ttitle">Term-by-Term Differentiation</div>
+        <div class="tbody">Inside the interval of convergence, you can differentiate power series term by term.</div>
+        <div class="mbox">If  f(x) = Σ cₙ(x-a)ⁿ,
+then f'(x) = Σ n cₙ (x-a)ⁿ⁻¹</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">THEOREM</span>
+        <div class="ttitle">Term-by-Term Integration</div>
+        <div class="tbody">You can also integrate power series term by term, which is very useful for building new series such as <strong>ln(1+x)</strong>.</div>
+        <div class="mbox">∫ Σ cₙ(x-a)ⁿ dx = Σ cₙ(x-a)ⁿ⁺¹/(n+1) + C
+
+ln(1+x) = x - x²/2 + x³/3 - x⁴/4 + ...   for -1 &lt; x &lt; 1</div></div>
+      </div>
+
+      <div class="week-section" id="calc-w3">
+        <div class="sec-hdr">// LECTURE 3 — TAYLOR, MACLAURIN &amp; APPLICATIONS</div>
+
+        <div class="tb def"><span class="ttag t-def">DEFINITION</span>
+        <div class="ttitle">Taylor &amp; Maclaurin Series</div>
+        <div class="tbody">The Taylor series of a function at <strong>x = a</strong> is built from derivatives at that point. The Maclaurin series is the special case <strong>a = 0</strong>.</div>
+        <div class="mbox">∞
+Σ f⁽ᵏ⁾(a)/k! · (x-a)ᵏ
+k=0
+
+Maclaurin:  a = 0</div></div>
+
+        <div class="tb note"><span class="ttag t-note">MUST KNOW</span>
+        <div class="ttitle">Standard Maclaurin Series</div>
+        <div class="mbox">1/(1-x) = 1 + x + x² + x³ + ...
+eˣ = 1 + x + x²/2! + x³/3! + ...
+sin x = x - x³/3! + x⁵/5! - ...
+cos x = 1 - x²/2! + x⁴/4! - ...
+ln(1+x) = x - x²/2 + x³/3 - x⁴/4 + ...</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">APPLICATION</span>
+        <div class="ttitle">Binomial Series</div>
+        <div class="mbox">(1+x)ᵐ = 1 + mx + m(m-1)/2! · x² + ...
+Converges absolutely for |x| &lt; 1</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">APPLICATION</span>
+        <div class="ttitle">Estimate Integrals &amp; Limits</div>
+        <div class="tbody">Taylor series helps estimate nonelementary integrals and evaluate indeterminate forms by replacing complicated functions with simpler polynomial approximations.</div>
+        <div class="mbox">Example ideas:
+• estimate  ∫₀¹ sin(x²) dx
+• evaluate  lim x→1 ln(x)/(x-1)
+• evaluate  lim x→0 (sin x - tan x)/x³</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">FOURIER</span>
+        <div class="ttitle">Fourier Series Basics</div>
+        <div class="tbody">A periodic function of period <strong>2π</strong> can be represented using sines and cosines.</div>
+        <div class="mbox">f(x) = a₀ + Σ (aₙ cos nx + bₙ sin nx)
+
+For period 2π:
+a₀ = (1/2π)∫₋π^π f(x)dx
+aₙ = (1/π)∫₋π^π f(x)cos(nx)dx
+bₙ = (1/π)∫₋π^π f(x)sin(nx)dx</div></div>
+      </div>
+
+      <div class="week-section" id="calc-w4">
+        <div class="sec-hdr">// LECTURE 4 — DIFFERENTIAL EQUATIONS &amp; COMPLEX NUMBERS</div>
+
+        <div class="tb def"><span class="ttag t-def">DEFINITION</span>
+        <div class="ttitle">Differential Equation</div>
+        <div class="tbody">A differential equation contains an unknown function and its derivatives. If the function depends on one variable, it is an <strong>ODE</strong>; if it depends on several variables, it is a <strong>PDE</strong>.</div>
+        <div class="mbox">ODE  → one independent variable
+PDE  → two or more independent variables</div></div>
+
+        <div class="tb note"><span class="ttag t-note">CLASSIFICATION</span>
+        <div class="ttitle">Order &amp; Degree</div>
+        <div class="tbody">The <strong>order</strong> is the highest derivative present. The <strong>degree</strong> is the power of the highest derivative after radicals/fractions are removed.</div>
+        <div class="mbox">y' = 2x + 3         → 1st order
+y'' + 9y' + 3 = 0  → 2nd order</div></div>
+
+        <div class="tb def"><span class="ttag t-def">DEFINITION</span>
+        <div class="ttitle">Complex Number</div>
+        <div class="tbody">A complex number has the form <strong>z = a + bi</strong>, where <strong>i² = -1</strong>. The real part is <strong>a</strong>, the imaginary part is <strong>b</strong>.</div>
+        <div class="mbox">z = a + bi
+|z| = √(a² + b²)
+arg(z) = φ</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">TRIG FORM</span>
+        <div class="ttitle">Polar / Trigonometric Form</div>
+        <div class="mbox">z = r(cos φ + i sin φ)
+
+Multiplication:  multiply magnitudes, add arguments
+Division:        divide magnitudes, subtract arguments</div></div>
+
+        <div class="tb alg"><span class="ttag t-alg">FORMULA</span>
+        <div class="ttitle">De Moivre's Theorem</div>
+        <div class="mbox">If z = r(cos θ + i sin θ), then
+zⁿ = rⁿ(cos nθ + i sin nθ)
+
+Useful for powers and roots of complex numbers.</div></div>
+      </div>
+
+      <div class="week-section" id="calc-cs">
+        <div class="sec-hdr">// CHEAT SHEET — CALCULUS 2</div>
+
+        <div class="tb alg"><span class="ttag t-alg">QUICK TESTS</span>
+        <div class="ttitle">Convergence Fast Check</div>
+        <div class="mbox">1. Check lim aₙ. If not 0 → diverges
+2. Geometric? Use |r| &lt; 1
+3. p-series?  Σ1/nᵖ converges only if p &gt; 1
+4. Positive decreasing terms? Try Integral Test</div></div>
+
+        <div class="tb note"><span class="ttag t-note">POWER SERIES</span>
+        <div class="ttitle">Must Remember</div>
+        <div class="mbox">Σ xⁿ = 1/(1-x), |x|&lt;1
+ln(1+x) = x - x²/2 + x³/3 - ...
+Differentiate / integrate term-by-term only inside interval of convergence
+Always test endpoints separately</div></div>
+
+        <div class="tb thm"><span class="ttag t-thm">MACLAURIN LIST</span>
+        <div class="ttitle">Top 5 Expansions</div>
+        <div class="mbox">eˣ = 1 + x + x²/2! + x³/3! + ...
+sin x = x - x³/3! + x⁵/5! - ...
+cos x = 1 - x²/2! + x⁴/4! - ...
+1/(1-x) = 1 + x + x² + ...
+ln(1+x) = x - x²/2 + x³/3 - ...</div></div>
+
+        <div class="tb ex"><span class="ttag t-ex">REMEMBER</span>
+        <div class="ttitle">Complex Numbers &amp; DE</div>
+        <div class="mbox">z = a + bi
+|z| = √(a²+b²)
+z = r(cosφ + i sinφ)
+zⁿ = rⁿ(cos nφ + i sin nφ)
+ODE → one variable
+PDE → several variables
+Order = highest derivative</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="ftxt">© 2025 <span class="fglow">AITU</span> · CYBERSECURITY DEPT · 1ST YEAR</div>
+  <div class="ftxt">MIDTERM PREP <span class="fglow">v3.0</span></div>
+</footer>
+
+<nav class="mobile-nav"><div class="mobile-nav-inner">
+  <button class="mob-btn active" id="mob-home" onclick="show('home')"><span class="mob-icon">⌂</span><span class="mob-label">HOME</span></button>
+  <button class="mob-btn" id="mob-linalg" onclick="show('linalg')"><span class="mob-icon">𝛁</span><span class="mob-label">LIN.ALG</span></button>
+  <button class="mob-btn" id="mob-hacking" onclick="show('hacking')"><span class="mob-icon">⚡</span><span class="mob-label">HACKING</span></button>
+  <button class="mob-btn" id="mob-electronics" onclick="show('electronics')"><span class="mob-icon">⬡</span><span class="mob-label">ELECTRO</span></button>
+  <button class="mob-btn" id="mob-cultural" onclick="show('cultural')"><span class="mob-icon">◈</span><span class="mob-label">CULTURE</span></button>
+  <button class="mob-btn" id="mob-polsci" onclick="show('polsci')"><span class="mob-icon">◉</span><span class="mob-label">POL.SCI</span></button>
+  <button class="mob-btn" id="mob-calculus" onclick="show('calculus')"><span class="mob-icon">∫</span><span class="mob-label">CALC 2</span></button>
+</div></nav>
+
+<script>
+const PANELS=['home','linalg','hacking','electronics','cultural','polsci','calculus'];
+function show(id){
+  PANELS.forEach(p=>{
+    document.getElementById('panel-'+p).classList.remove('active');
+    const sb=document.getElementById('btn-'+p); if(sb) sb.classList.remove('active');
+    const mb=document.getElementById('mob-'+p); if(mb) mb.classList.remove('active');
+  });
+  document.getElementById('panel-'+id).classList.add('active');
+  const sb=document.getElementById('btn-'+id); if(sb) sb.classList.add('active');
+  const mb=document.getElementById('mob-'+id);
+  if(mb){mb.classList.add('active');mb.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});}
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function switchWeek(id, btn){
+  const panel = btn.closest('.content-panel');
+  panel.querySelectorAll('.week-section').forEach(s=>s.classList.remove('active'));
+  panel.querySelectorAll('.week-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
